@@ -17,22 +17,20 @@ public class Conf {
     static ResultSet rs;
     static String user = "root";
     static String pass = "";
+    static String url = "jdbc:mysql://localhost/MedicalRecord?serverTimezone=UTC";
     
     
     
-    public static void main(String[]args){
-        try{
-            String url ="jdbc:mysql://localhost/MedicalRecord?serverTimezone=UTC";
-            conn = DriverManager.getConnection(url,user,pass);
-            stm =  conn.createStatement();
-            
-            if(conn != null){
-                System.out.println("koneksi berhasil");
-            }
-        }catch(SQLException ex){
-           System.out.println(ex.getMessage());
-           
-        }
+    public static Connection connect(){
+        if(conn == null){
+            try{
+                conn = DriverManager.getConnection(url,user,pass);
+            }catch(SQLException e){
+                System.err.format("SQL State : %s\n%s", e.getSQLState(), e.getMessage());
+            }catch(Exception e){
+                e.printStackTrace();
+            }            
+        }return conn;
     }
     
     
