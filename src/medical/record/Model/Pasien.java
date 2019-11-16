@@ -7,28 +7,28 @@ package medical.record.Model;
 
 /**
  *
- * @author Acer
+ * @author NisaFitrianti
  */
 public class Pasien {
     int id_Pasien;
     String namaPasien;
-    char gender;
-    String tglLahir;
-    String noTelp;
-    String alamat;
-    String pekerjaan;
+    char genderPasien;
+    String tglLahirPasien;
+    String noTelpPasien;
+    String alamatPasien;
+    String pekerjaanPasien;
 
     public Pasien() {
     }
 
-    public Pasien(int id_Pasien, String namaPasien, char gender, String tglLahir, String noTelp, String alamat, String pekerjaan) {
+    public Pasien(int id_Pasien, String namaPasien, char genderPasien, String tglLahirPasien, String noTelpPasien, String alamatPasien, String pekerjaanPasien) {
         this.id_Pasien = id_Pasien;
         this.namaPasien = namaPasien;
-        this.gender = gender;
-        this.tglLahir = tglLahir;
-        this.noTelp = noTelp;
-        this.alamat = alamat;
-        this.pekerjaan = pekerjaan;
+        this.genderPasien = genderPasien;
+        this.tglLahirPasien = tglLahirPasien;
+        this.noTelpPasien = noTelpPasien;
+        this.alamatPasien = alamatPasien;
+        this.pekerjaanPasien = pekerjaanPasien;
     }
     
     
