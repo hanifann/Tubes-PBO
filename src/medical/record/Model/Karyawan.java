@@ -7,12 +7,12 @@ package medical.record.Model;
 
 /**
  *
- * @author NisaFitrianti
+ * @author saftrn
  */
 public class Karyawan {
-    int id_karyawan;
-    String namaKaryawan;
-    String jabatanKaryawan;
+    private int id_karyawan;
+    private String namaKaryawan;
+    private String jabatanKaryawan;
 
     public Karyawan() {
     }

@@ -12,4 +12,17 @@ package medical.record.Model;
 public class MedicalRecord {
     int id_medicalrecord;
     
+    String nama_dokter;
+    String nama_karyawan;
+    String nama_pasien;
+    String nama_penyakit;
+    String nama_poliklinik;
+    String nama_spesialisasi;
+    
+    private String ruangRawat;
+    private int statusPasien;
+    private String waktuDaftar;
+    private String waktuKeluar;
+    
+    
 }

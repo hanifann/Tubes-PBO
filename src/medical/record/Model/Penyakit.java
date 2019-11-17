@@ -7,11 +7,11 @@ package medical.record.Model;
 
 /**
  *
- * @author Acer
+ * @author safrn
  */
 public class Penyakit {
-    int id_penyakit;
-    String namaPenyakit;
+    private int id_penyakit;
+    private String namaPenyakit;
 
     public Penyakit() {
     }

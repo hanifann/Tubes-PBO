@@ -7,16 +7,16 @@ package medical.record.Model;
 
 /**
  *
- * @author NisaFitrianti
+ * @author saftrn
  */
 public class Dokter {
-    int id_dokter;
-    int id_Spesialisasi;
-    int id_poliklinik;
-    String namaDokter;
-    String tglLahirDokter;
-    String noTelpDokter;
-    String alamatDokter;
+    private int id_dokter;
+    private int id_Spesialisasi;
+    private int id_poliklinik;
+    private String namaDokter;
+    private String tglLahirDokter;
+    private String noTelpDokter;
+    private String alamatDokter;
 
     public Dokter() {
     }

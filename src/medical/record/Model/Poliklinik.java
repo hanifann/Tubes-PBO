@@ -7,11 +7,11 @@ package medical.record.Model;
 
 /**
  *
- * @author NisaFitrianti
+ * @author saftrn
  */
 public class Poliklinik extends Spesialisasi{
-    int id_poliklinik;
-    String namaPoliklinik;
+    private int id_poliklinik;
+    private String namaPoliklinik;
 
     public Poliklinik() {
     }

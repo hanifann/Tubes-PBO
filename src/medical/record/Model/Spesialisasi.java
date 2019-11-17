@@ -7,11 +7,11 @@ package medical.record.Model;
 
 /**
  *
- * @author Acer
+ * @author saftrn
  */
 public class Spesialisasi extends Penyakit{
-    int id_spesialisasi;
-    String namaSpesialisasi;
+    private int id_spesialisasi;
+    private String namaSpesialisasi;
 
     public Spesialisasi() {
     }
