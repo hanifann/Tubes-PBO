@@ -10,6 +10,8 @@ package medical.record.Model;
  * @author zetsuen
  */
 public class MedicalRecord {
+    
+    // masih bingung buat class yang ini
     int id_medicalrecord;
     
     String nama_dokter;
