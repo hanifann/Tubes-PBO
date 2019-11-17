@@ -3,19 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medical.record.Controller;
+package medical.record.Model;
 
 /**
  *
  * @author zetsuen
  */
 public class MedicalRecord {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+    int id_medicalrecord;
     
 }

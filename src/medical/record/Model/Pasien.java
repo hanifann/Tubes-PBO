@@ -10,7 +10,7 @@ package medical.record.Model;
  * @author NisaFitrianti
  */
 public class Pasien {
-    int id_Pasien;
+    int id_pasien;
     String namaPasien;
     char genderPasien;
     String tglLahirPasien;
@@ -22,7 +22,7 @@ public class Pasien {
     }
 
     public Pasien(int id_Pasien, String namaPasien, char genderPasien, String tglLahirPasien, String noTelpPasien, String alamatPasien, String pekerjaanPasien) {
-        this.id_Pasien = id_Pasien;
+        this.id_pasien = id_Pasien;
         this.namaPasien = namaPasien;
         this.genderPasien = genderPasien;
         this.tglLahirPasien = tglLahirPasien;
