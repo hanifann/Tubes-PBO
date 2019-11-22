@@ -10,17 +10,24 @@ package medical.record.Model;
  * @author saftrn
  */
 public class Spesialisasi extends Penyakit{
-    private int id_spesialisasi;
+    private int kode_spesialisasi;
     private String namaSpesialisasi;
 
     public Spesialisasi() {
     }
-    
-    public Spesialisasi(int id_spesialisasi, String namaSpesialisasi, int id_penyakit, String namaPenyakit) {
-        super(id_penyakit, namaPenyakit);
-        this.id_spesialisasi = id_spesialisasi;
+
+    public Spesialisasi(int kode_spesialisasi, String namaSpesialisasi) {
+        this.kode_spesialisasi = kode_spesialisasi;
         this.namaSpesialisasi = namaSpesialisasi;
     }
+
+    public Spesialisasi(int kode_spesialisasi, String namaSpesialisasi, int kode_penyakit, String namaPenyakit) {
+        super(kode_penyakit, namaPenyakit);
+        this.kode_spesialisasi = kode_spesialisasi;
+        this.namaSpesialisasi = namaSpesialisasi;
+    }
+    
+    
     
     
    

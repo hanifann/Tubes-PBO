@@ -12,25 +12,31 @@ package medical.record.Controller;
 import java.sql.*;
 
 public class Conf {
-    static Connection conn;
-    static Statement stm;
-    static ResultSet rs;
-    static String user = "root";
-    static String pass = "";
-    static String url = "jdbc:mysql://localhost/MedicalRecord?serverTimezone=UTC";
+    private static Connection conn;
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DB_NAME = "db_rekam_medis";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/"+DB_NAME;
+    private static final String DB_UNAME = "root";
+    private static final String DB_PASS = "";   
     
-    
-    
-    public static Connection connect(){
-        if(conn == null){
-            try{
-                conn = DriverManager.getConnection(url,user,pass);
-            }catch(SQLException e){
-                System.err.format("SQL State : %s\n%s", e.getSQLState(), e.getMessage());
-            }catch(Exception e){
+    public static Connection koneksiDatabase(){
+            if(conn == null){
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    conn = DriverManager.getConnection(DB_URL,DB_UNAME,DB_PASS);           
+                }catch(ClassNotFoundException e){
+                    System.err.format("Class not found");
+                }catch(SQLException e){
+                    System.err.format("SQL State: %s\n%",e.getSQLState(),e.getMessage());
+                }catch(Exception e){
                 e.printStackTrace();
-            }            
-        }return conn;
+            }
+        }
+        return conn;
+    }
+
+    PreparedStatement prepareStatement(String query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

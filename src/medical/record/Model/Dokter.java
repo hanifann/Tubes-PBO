@@ -17,20 +17,20 @@ public class Dokter {
     private String tglLahirDokter;
     private String noTelpDokter;
     private String alamatDokter;
+    private String tglMulaiKerja;
 
     public Dokter() {
     }
 
-    public Dokter(int id_Dokter, int id_Spesialisasi, int id_poliklinik, String namaDokter, String tglLahirDokter, String noTelpDokter, String alamatDokter) {
-        this.id_dokter = id_Dokter;
+    public Dokter(int id_dokter, int id_Spesialisasi, int id_poliklinik, String namaDokter, String tglLahirDokter, String noTelpDokter, String alamatDokter, String tglMulaiKerja) {
+        this.id_dokter = id_dokter;
         this.id_Spesialisasi = id_Spesialisasi;
         this.id_poliklinik = id_poliklinik;
         this.namaDokter = namaDokter;
         this.tglLahirDokter = tglLahirDokter;
         this.noTelpDokter = noTelpDokter;
         this.alamatDokter = alamatDokter;
-    }
-    
-    
+        this.tglMulaiKerja = tglMulaiKerja;
+    }    
     
 }

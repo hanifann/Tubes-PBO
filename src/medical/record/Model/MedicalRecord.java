@@ -11,20 +11,30 @@ package medical.record.Model;
  */
 public class MedicalRecord {
     
-    // masih bingung buat class yang ini
-    int id_medicalrecord;
+    private int id_medicalrecord;
+    private int id_pasien;
+    private int id_karyawan;
+    private int id_dokter;
+    private int kode_penyakit;
+    private int kode_spesialisasi;
+    private int kode_poliklinik;
     
-    String nama_dokter;
-    String nama_karyawan;
-    String nama_pasien;
-    String nama_penyakit;
-    String nama_poliklinik;
-    String nama_spesialisasi;
+    private String nama_karyawan;
+    private String nama_dokter;
+    private String nama_pasien;
+    private String nama_penyakit;
+    private String nama_poliklinik;
+    private String nama_spesialisasi;
     
-    private String ruangRawat;
-    private int statusPasien;
-    private String waktuDaftar;
-    private String waktuKeluar;
+    private String pengobatan;
+    private String tindakan;
+    private String namaSpesialisasi;
+    private String namaPenyakit;
+    private String ruangPerawatan;
+    private String tglMasuk;
+    private String tglKeluar;
+    private String statusPasien;
     
+        
     
 }

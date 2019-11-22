@@ -10,16 +10,15 @@ package medical.record.Model;
  * @author safrn
  */
 public class Penyakit {
-    private int id_penyakit;
+    private int kode_penyakit;
     private String namaPenyakit;
 
     public Penyakit() {
     }
 
-    public Penyakit(int id_penyakit, String namaPenyakit) {
-        this.id_penyakit = id_penyakit;
+    public Penyakit(int kode_penyakit, String namaPenyakit) {
+        this.kode_penyakit = kode_penyakit;
         this.namaPenyakit = namaPenyakit;
     }
-    
     
 }
