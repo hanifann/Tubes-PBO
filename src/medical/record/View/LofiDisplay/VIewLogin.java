@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medical.record.View;
+package medical.record.View.LofiDisplay;
 
 /**
  *
@@ -31,8 +31,8 @@ public class VIewLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfUsername = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        tfPassword = new javax.swing.JTextField();
         btMasuk = new javax.swing.JButton();
+        pfPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(74, 158, 161));
@@ -42,12 +42,6 @@ public class VIewLogin extends javax.swing.JFrame {
         jLabel3.setText("Nomor Induk Pegawai (NIP)");
 
         jLabel4.setText("Password");
-
-        tfPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPasswordActionPerformed(evt);
-            }
-        });
 
         btMasuk.setText("Masuk");
         btMasuk.addActionListener(new java.awt.event.ActionListener() {
@@ -71,8 +65,8 @@ public class VIewLogin extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(tfUsername)
                             .addComponent(jLabel4)
-                            .addComponent(tfPassword)
-                            .addComponent(btMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))))
+                            .addComponent(btMasuk, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+                            .addComponent(pfPassword))))
                 .addContainerGap(169, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,18 +81,14 @@ public class VIewLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(pfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(btMasuk)
                 .addContainerGap(173, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPasswordActionPerformed
 
     private void btMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMasukActionPerformed
         // TODO add your handling code here:
@@ -144,7 +134,7 @@ public class VIewLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField tfPassword;
+    private javax.swing.JPasswordField pfPassword;
     private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 }

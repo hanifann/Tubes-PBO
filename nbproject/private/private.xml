@@ -3,8 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/zetsuen/NetBeansProjects/Tubes-PBO/src/medical/record/View/ViewDataPasien.java</file>
-            <file>file:/home/zetsuen/NetBeansProjects/Tubes-PBO/src/medical/record/View/coba.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/ViewRekamMedis.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Karyawan.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Pasien.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Spesialisasi.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/Main.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Dokter.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Poliklinik.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/ViewDetailPasien.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/MedicalRecord.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/Conf.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/ViewMain.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Penyakit.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/ViewDaftarPasien.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewDataPasien.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/VIewLogin.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/icons8-list-100.png</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/coba.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/LofiDisplay/ViewPasien.java</file>
         </group>
     </open-files>
 </project-private>

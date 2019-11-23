@@ -38,8 +38,8 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <Component id="tfUsername" max="32767" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="tfPassword" alignment="0" max="32767" attributes="0"/>
                           <Component id="btMasuk" pref="351" max="32767" attributes="0"/>
+                          <Component id="pfPassword" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -59,8 +59,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="tfPassword" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="pfPassword" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="btMasuk" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="173" max="32767" attributes="0"/>
           </Group>
@@ -85,11 +85,6 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfPassword">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPasswordActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btMasuk">
       <Properties>
         <Property name="text" type="java.lang.String" value="Masuk"/>
@@ -97,6 +92,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btMasukActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="pfPassword">
     </Component>
   </SubComponents>
 </Form>
