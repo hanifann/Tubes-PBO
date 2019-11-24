@@ -16,18 +16,27 @@ public class Karyawan {
     private String statusKaryawan;
     private String tglLahir;
     private String tglMulaiKerja;
+    private String password;
 
     public Karyawan() {
     }
 
-    public Karyawan(int id_karyawan, String namaKaryawan, String jabatanKaryawan, String statusKaryawan, String tglLahir, String tglMulaiKerja) {
+    public Karyawan(int id_karyawan, String password) {
+        this.id_karyawan = id_karyawan;
+        this.password = password;
+    }
+    
+    public Karyawan(int id_karyawan, String namaKaryawan, String jabatanKaryawan, String statusKaryawan, String tglLahir, String tglMulaiKerja, String password) {
         this.id_karyawan = id_karyawan;
         this.namaKaryawan = namaKaryawan;
         this.jabatanKaryawan = jabatanKaryawan;
         this.statusKaryawan = statusKaryawan;
         this.tglLahir = tglLahir;
         this.tglMulaiKerja = tglMulaiKerja;
+        this.password = password;
     }
+
+  
 
     
     

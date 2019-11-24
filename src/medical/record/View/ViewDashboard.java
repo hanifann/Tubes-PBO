@@ -5,6 +5,8 @@
  */
 package medical.record.View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Acer
@@ -28,16 +30,16 @@ public class ViewDashboard extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnDokter = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JLabel();
+        btnPoliklinik = new javax.swing.JLabel();
+        btnRekamMedis = new javax.swing.JLabel();
+        btnPasien = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Rekam Medis RS Medika");
@@ -47,19 +49,12 @@ public class ViewDashboard extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setAlignmentX(0.0F);
+        jPanel1.setAlignmentY(0.0F);
         jPanel1.setMaximumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setMinimumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setLayout(null);
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 25.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(740, 680, 480, 236);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 18.png"))); // NOI18N
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(190, 390, 482, 250);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 55.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -72,28 +67,14 @@ public class ViewDashboard extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 42.png"))); // NOI18N
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(1020, 780, 420, 210);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 57.png"))); // NOI18N
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(1170, 40, 230, 90);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 24.png"))); // NOI18N
-        jLabel6.setText("jLabel6");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(740, 390, 480, 250);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 26.png"))); // NOI18N
-        jLabel7.setText("jLabel7");
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(190, 680, 480, 240);
+        jLabel3.setBounds(1030, 780, 420, 210);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Dr. David");
+        jLabel9.setText("Dr David");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(510, 250, 440, 50);
+        jLabel9.setBounds(640, 240, 150, 50);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -102,14 +83,56 @@ public class ViewDashboard extends javax.swing.JFrame {
         jPanel1.add(jLabel10);
         jLabel10.setBounds(630, 190, 173, 50);
 
+        btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 26.png"))); // NOI18N
+        btnDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDokterMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnDokter);
+        btnDokter.setBounds(200, 670, 481, 250);
+
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 57.png"))); // NOI18N
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnLogout);
+        btnLogout.setBounds(1180, 40, 220, 90);
+
+        btnPoliklinik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 25.png"))); // NOI18N
+        btnPoliklinik.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPoliklinikMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnPoliklinik);
+        btnPoliklinik.setBounds(760, 670, 481, 250);
+
+        btnRekamMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 18.png"))); // NOI18N
+        btnRekamMedis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRekamMedisMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnRekamMedis);
+        btnRekamMedis.setBounds(200, 380, 482, 250);
+
+        btnPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 24.png"))); // NOI18N
+        btnPasien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPasienMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnPasien);
+        btnPasien.setBounds(760, 380, 481, 250);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1452, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,8 +140,50 @@ public class ViewDashboard extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
+        // TODO add your handling code here:
+         ViewLogin menu = new ViewLogin();
+         menu.setVisible(true);
+         menu.setLocationRelativeTo(null);
+         dispose();
+    }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void btnRekamMedisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRekamMedisMouseClicked
+        // TODO add your handling code here:
+         ViewRekamMedis menu = new ViewRekamMedis();
+         menu.setVisible(true);
+         menu.setLocationRelativeTo(null);
+         dispose();
+    }//GEN-LAST:event_btnRekamMedisMouseClicked
+
+    private void btnPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPasienMouseClicked
+        // TODO add your handling code here:
+         ViewPasien menu = new ViewPasien();
+         menu.setVisible(true);
+         menu.setLocationRelativeTo(null);
+         dispose();
+    }//GEN-LAST:event_btnPasienMouseClicked
+
+    private void btnDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDokterMouseClicked
+        // TODO add your handling code here:
+         ViewDokter menu = new ViewDokter();
+         menu.setVisible(true);
+         menu.setLocationRelativeTo(null);
+         dispose();
+    }//GEN-LAST:event_btnDokterMouseClicked
+
+    private void btnPoliklinikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPoliklinikMouseClicked
+        // TODO add your handling code here:
+         ViewPoliklinik menu = new ViewPoliklinik();
+         menu.setVisible(true);
+         menu.setLocationRelativeTo(null);
+         dispose();
+    }//GEN-LAST:event_btnPoliklinikMouseClicked
+
+    
     /**
      * @param args the command line arguments
      */
@@ -155,15 +220,15 @@ public class ViewDashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnDokter;
+    private javax.swing.JLabel btnLogout;
+    private javax.swing.JLabel btnPasien;
+    private javax.swing.JLabel btnPoliklinik;
+    private javax.swing.JLabel btnRekamMedis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

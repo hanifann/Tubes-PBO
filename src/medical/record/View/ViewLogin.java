@@ -5,6 +5,11 @@
  */
 package medical.record.View;
 
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import medical.record.Controller.Auth;
+import medical.record.Controller.Conf;
+
 /**
  *
  * @author Acer
@@ -14,8 +19,15 @@ public class ViewLogin extends javax.swing.JFrame {
     /**
      * Creates new form ViewLogin
      */
+    
+    Connection conn;
+    Auth authentication;
+    
     public ViewLogin() {
         initComponents();
+        setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        authentication = new Auth();
     }
 
     /**
@@ -27,11 +39,11 @@ public class ViewLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btSubmit = new javax.swing.JPanel();
+        tfUsername = new javax.swing.JTextField();
+        tfPassword = new javax.swing.JPasswordField();
+        btnLogin = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,75 +54,83 @@ public class ViewLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Rekam Medis RS Medika");
         setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(1440, 1024));
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setMaximumSize(new java.awt.Dimension(1440, 1024));
-        jPanel2.setMinimumSize(new java.awt.Dimension(1440, 1024));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1440, 1024));
-        jPanel2.setLayout(null);
+        btSubmit.setBackground(new java.awt.Color(255, 255, 255));
+        btSubmit.setMaximumSize(new java.awt.Dimension(1440, 1024));
+        btSubmit.setMinimumSize(new java.awt.Dimension(1440, 1024));
+        btSubmit.setPreferredSize(new java.awt.Dimension(1440, 1024));
+        btSubmit.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(0, 153, 153));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Masuk");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        tfUsername.setBackground(new java.awt.Color(255, 255, 255));
+        tfUsername.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tfUsername.setForeground(new java.awt.Color(0, 0, 0));
+        tfUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                tfUsernameActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
-        jButton1.setBounds(540, 660, 350, 60);
+        btSubmit.add(tfUsername);
+        tfUsername.setBounds(460, 510, 510, 40);
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setText("6706184094");
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(460, 510, 510, 40);
+        tfPassword.setBackground(new java.awt.Color(255, 255, 255));
+        tfPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tfPassword.setForeground(new java.awt.Color(0, 0, 0));
+        tfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPasswordActionPerformed(evt);
+            }
+        });
+        btSubmit.add(tfPassword);
+        tfPassword.setBounds(460, 590, 510, 40);
+
+        btnLogin.setBackground(new java.awt.Color(43, 193, 199));
+        btnLogin.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Masuk");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        btSubmit.add(btnLogin);
+        btnLogin.setBounds(540, 660, 350, 60);
 
         jLabel8.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password");
-        jPanel2.add(jLabel8);
+        btSubmit.add(jLabel8);
         jLabel8.setBounds(470, 560, 320, 24);
-
-        jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPasswordField1.setText("jPasswordField1");
-        jPanel2.add(jPasswordField1);
-        jPasswordField1.setBounds(460, 590, 510, 40);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nomor Induk Pegawai (NIP)");
-        jPanel2.add(jLabel7);
+        btSubmit.add(jLabel7);
         jLabel7.setBounds(470, 480, 320, 24);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Login.png"))); // NOI18N
-        jPanel2.add(jLabel6);
+        btSubmit.add(jLabel6);
         jLabel6.setBounds(670, 410, 90, 50);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 40.png"))); // NOI18N
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        jPanel2.add(jLabel2);
+        btSubmit.add(jLabel2);
         jLabel2.setBounds(870, 0, 569, 480);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Rectangle 1 (1).png"))); // NOI18N
-        jPanel2.add(jLabel3);
+        btSubmit.add(jLabel3);
         jLabel3.setBounds(340, 360, 751, 420);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 39.png"))); // NOI18N
-        jPanel2.add(jLabel1);
+        btSubmit.add(jLabel1);
         jLabel1.setBounds(0, 590, 664, 437);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 45.png"))); // NOI18N
-        jPanel2.add(jLabel5);
+        btSubmit.add(jLabel5);
         jLabel5.setBounds(530, 100, 331, 201);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,13 +138,13 @@ public class ViewLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -132,9 +152,41 @@ public class ViewLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int username = Integer.parseInt(tfUsername.getText());
+        String password = authentication.MD5(String.valueOf(tfPassword.getPassword()));
+        
+        if(tfUsername.equals("")|| tfPassword.equals("")){
+            JOptionPane.showMessageDialog(this, "NIP dan password tidak boleh kosong");
+        }else{
+            authentication = new Auth(conn, username, password);
+            if(authentication.Login(username, password)){    
+                JOptionPane.showMessageDialog(this, "Login Berhasil");
+                dispose();
+                
+                ViewDashboard menu = new ViewDashboard();
+                menu.setVisible(true);
+                menu.setLocationRelativeTo(null);
+            }else{
+                JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");
+            }
+            
+        }   
+        
+        
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void tfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPasswordActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfPasswordActionPerformed
+
+    private void tfUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsernameActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfUsernameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +224,8 @@ public class ViewLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel btSubmit;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -180,8 +233,7 @@ public class ViewLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField tfPassword;
+    private javax.swing.JTextField tfUsername;
     // End of variables declaration//GEN-END:variables
 }

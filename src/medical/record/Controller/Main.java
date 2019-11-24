@@ -5,6 +5,8 @@
  */
 package medical.record.Controller;
 
+import medical.record.View.ViewLogin;
+
 /**
  *
  * @author Acer
@@ -12,7 +14,7 @@ package medical.record.Controller;
 public class Main {
     
     public static void main(String[] args) {
-        
+        new ViewLogin().setVisible(true);
     }
     
 }
