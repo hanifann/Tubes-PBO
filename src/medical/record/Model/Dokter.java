@@ -5,11 +5,13 @@
  */
 package medical.record.Model;
 
+import medical.record.Controller.Auth;
+
 /**
  *
  * @author saftrn
  */
-public class Dokter {
+public class Dokter extends Auth{
     private int id_dokter;
     private int id_Spesialisasi;
     private int id_poliklinik;

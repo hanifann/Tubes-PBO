@@ -6,7 +6,9 @@
 package medical.record.View;
 
 import javax.swing.JOptionPane;
+import medical.record.Controller.Auth;
 import medical.record.Controller.FunctionControl;
+import medical.record.Model.Karyawan;
 
 /**
  *
@@ -17,10 +19,26 @@ public class ViewDashboard extends javax.swing.JFrame {
     /**
      * Creates new form ViewDashboard
      */
-    public ViewDashboard() {
+    
+    Auth auth = new Auth();
+    
+    public ViewDashboard(Auth auth) {
         initComponents();
+        this.setLocationRelativeTo(null);        
+        this.auth = auth;
+    }
+    
+    public ViewDashboard(Karyawan auth){
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.auth = auth;
     }
 
+    public ViewDashboard() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

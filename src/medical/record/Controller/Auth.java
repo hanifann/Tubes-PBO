@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.ConditionalFeature;
 import javax.swing.JOptionPane;
+import medical.record.Model.Karyawan;
 import medical.record.View.ViewLogin;
 
 /**
@@ -93,4 +94,29 @@ public class Auth {
         }
         return cekTrue;
     }  
+    
+     public Karyawan session(){
+         Karyawan karyawan = null;
+         if(conn != null){
+             try{
+                String query = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";           
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, id);
+                ps.setString(2 , password);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    karyawan = new Karyawan(
+                            rs.getInt("id_karyawan"),
+                            rs.getString("nama_kayawan"),
+                            rs.getString("jns_kelamin"),
+                            rs.getString("tgl_lahir"),
+                            rs.getString("tgl_mulai_bekerja")
+                    );                    
+                }
+             }catch(SQLException ex){
+                Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE,null,ex);
+             }
+         }
+         return karyawan;
+     }
 }
