@@ -5,7 +5,11 @@
  */
 package medical.record.Controller;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import medical.record.Model.Dokter;
 import medical.record.View.ViewLogin;
+import sun.rmi.transport.Connection;
 
 /**
  *
@@ -16,5 +20,4 @@ public class Main {
     public static void main(String[] args) {
         new ViewLogin().setVisible(true);
     }
-    
 }

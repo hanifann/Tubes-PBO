@@ -5,6 +5,17 @@
  */
 package medical.record.View;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import medical.record.Controller.Conf;
+import medical.record.Controller.FunctionControl;
+import medical.record.Model.Dokter;
+
 /**
  *
  * @author Acer
@@ -14,8 +25,12 @@ public class ViewDokter extends javax.swing.JFrame {
     /**
      * Creates new form ViewDOkter
      */
+    
+    FunctionControl fc = new FunctionControl();
+    
     public ViewDokter() {
         initComponents();
+        
     }
 
     /**
@@ -30,7 +45,7 @@ public class ViewDokter extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -40,6 +55,7 @@ public class ViewDokter extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistem Rekam Medis RS Medika");
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1440, 1024));
         setMinimumSize(new java.awt.Dimension(1440, 1024));
@@ -66,10 +82,10 @@ public class ViewDokter extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(42, 147, 151));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/arrow-back.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/arrow-back.png"))); // NOI18N
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                btnBackMouseClicked(evt);
             }
         });
 
@@ -81,7 +97,7 @@ public class ViewDokter extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
-                .addComponent(jLabel1)
+                .addComponent(btnBack)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(191, Short.MAX_VALUE))
@@ -92,7 +108,7 @@ public class ViewDokter extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(btnBack)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -120,20 +136,20 @@ public class ViewDokter extends javax.swing.JFrame {
         tblDokter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tblDokter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Nama", "Spesialis", "Poliklinik"
+                "NIP", "Nama", "Spesialis", "Poliklinik", "Tanggal Mulai Kerja", "No Telepon"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,9 +160,16 @@ public class ViewDokter extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblDokter.setAlignmentX(1.0F);
+        tblDokter.setAlignmentY(1.0F);
         tblDokter.setRowHeight(30);
         tblDokter.setRowMargin(2);
         tblDokter.setSelectionBackground(new java.awt.Color(43, 193, 199));
+        tblDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDokterMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblDokter);
 
         jPanel1.add(jScrollPane1);
@@ -168,9 +191,13 @@ public class ViewDokter extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
+        ViewDashboard menu = new ViewDashboard();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnBackMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -179,6 +206,11 @@ public class ViewDokter extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void tblDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDokterMouseClicked
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "test");
+    }//GEN-LAST:event_tblDokterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,8 +249,8 @@ public class ViewDokter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnBack;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
