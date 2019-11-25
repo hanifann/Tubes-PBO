@@ -6,6 +6,7 @@
 package medical.record.View;
 
 import javax.swing.JOptionPane;
+import medical.record.Controller.FunctionControl;
 
 /**
  *

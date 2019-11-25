@@ -5,8 +5,8 @@
         <group>
             <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Dokter.java</file>
             <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewDokter.java</file>
-            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/Conf.java</file>
-            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/DokterController.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewDashboard.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/FunctionControl.java</file>
         </group>
     </open-files>
 </project-private>

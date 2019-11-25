@@ -30,7 +30,10 @@ public class ViewDokter extends javax.swing.JFrame {
     
     public ViewDokter() {
         initComponents();
-        
+        tblDokter.setModel(fc.getModelDokter());
+        fc.setTableDokter();
+        fc.loadDokter();
+        fc.readDokter();
     }
 
     /**
@@ -201,6 +204,8 @@ public class ViewDokter extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        fc.loadDokter();
+        fc.readDokter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

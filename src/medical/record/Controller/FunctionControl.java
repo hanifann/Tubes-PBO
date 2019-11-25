@@ -45,8 +45,6 @@ public class FunctionControl {
         modelDokter.addColumn("Poliklinik");
         modelDokter.addColumn("Tanggal Mulai Kerja");
         modelDokter.addColumn("No Telepon");
-        
-        
     }
     
     public void setTablePasien(){
@@ -88,17 +86,16 @@ public class FunctionControl {
                 listDokter = new ArrayList<>();
                 PreparedStatement preparedStatement =  conn.prepareStatement(query);
                 ResultSet neSet = preparedStatement.executeQuery();
-                
                 while(neSet.next()){
                     int idDokter = neSet.getInt("id_dokter");
                     String nama = neSet.getString("nama_dokter");
                     String gender = neSet.getString("gender_dokter");
                     String tglLahir = neSet.getString("tgl_lahir");
                     String tglMulaiKerja = neSet.getString("tgl_mulai_kerja");
-                    String noTelp = neSet.getString("no_telp");
+                    String noTelp = neSet.getString("no_telepon");
                     String alamat = neSet.getString("alamat");
                     int kdPoli = neSet.getInt("kode_poliklinik");
-                    int kdSpesialis = neSet.getInt("kode_spesialis");
+                    int kdSpesialis = neSet.getInt("kode_spesialisasi");
                     
                     Dokter dokter = new Dokter(
                             idDokter, 
@@ -111,7 +108,9 @@ public class FunctionControl {
                             alamat, 
                             tglMulaiKerja
                     );
+                    listDokter.add(dokter);
                 }
+                listDokter.size();
                 neSet.close();
                 preparedStatement.close();
             }catch(SQLException ex){
