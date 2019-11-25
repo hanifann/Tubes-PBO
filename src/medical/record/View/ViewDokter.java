@@ -34,6 +34,7 @@ public class ViewDokter extends javax.swing.JFrame {
         fc.setTableDokter();
         fc.loadDokter();
         fc.readDokter();
+        
     }
 
     /**

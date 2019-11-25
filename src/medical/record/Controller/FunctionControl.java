@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Model.Dokter;
 import medical.record.View.ViewDokter;
@@ -119,5 +120,27 @@ public class FunctionControl {
         }else{
             System.out.println("Disconnected");
         }
+    }
+    
+    public void insertDokter(String nip, String nama, String spesialis, String poliklinik, String tglL, String gender,String tgl){
+        if(conn != null){
+            try{
+                String sql = "INSERT INTO dokter(id_dokter, nama_dokter, jns_kelamin, tgl_lahir,tgl_mulai_bekerja, kode_poliklinik, kode_spesialisasi) VALUES"
+                        + "(?,?,?,?,?,?,?)";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, nip);
+                ps.setString(2, nama);
+                ps.setString(3, gender);
+                ps.setString(4, tglL);
+                ps.setString(5, tgl);
+                ps.setString(6, poliklinik);
+                ps.setString(7, spesialis);
+                
+                
+            }catch(SQLException e){
+                Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,e); 
+            }
+        }
+        
     }
 }
