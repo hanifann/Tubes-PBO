@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Model/Dokter.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewLogin.java</file>
             <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewDokter.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewPasien.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewPoliklinik.java</file>
+            <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewAdmin.java</file>
             <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/View/ViewDashboard.java</file>
             <file>file:/D:/1PBO/Tubes-PBO-master/Tubes-PBO-master/src/medical/record/Controller/FunctionControl.java</file>
         </group>

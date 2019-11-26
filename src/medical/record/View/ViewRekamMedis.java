@@ -45,19 +45,19 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        cbRekamMedis = new javax.swing.JComboBox<>();
+        tfIdPasien = new javax.swing.JTextField();
+        tfNamaPasien = new javax.swing.JTextField();
+        tfIdDokter = new javax.swing.JTextField();
+        tfNamaDokter = new javax.swing.JTextField();
+        tfKdSpesialisasi = new javax.swing.JTextField();
+        tfKdPoli = new javax.swing.JTextField();
+        tfRuangRawat = new javax.swing.JTextField();
+        tfTglMasuk = new javax.swing.JTextField();
+        tfTglKeluar = new javax.swing.JTextField();
+        tfPemeriksa = new javax.swing.JTextField();
+        tfTindakan = new javax.swing.JTextField();
+        tfPengobatan = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
@@ -68,7 +68,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1440, 1024));
         setMinimumSize(new java.awt.Dimension(1440, 1024));
-        setPreferredSize(new java.awt.Dimension(1440, 1024));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1440, 1024));
@@ -77,6 +77,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(42, 147, 151));
+        jPanel2.setToolTipText("SistemRekam Medis");
 
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/arrow-back.png"))); // NOI18N
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,183 +114,174 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 58, 547, 112);
+        jPanel2.setBounds(0, 20, 547, 112);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 27.png"))); // NOI18N
+        jLabel3.setToolTipText("SistemRekam Medis");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(1005, 58, 370, 110);
+        jLabel3.setBounds(1010, 20, 370, 110);
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Jenis Rekam Medis : ");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(240, 220, 187, 24);
+        jLabel1.setBounds(270, 170, 187, 24);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("ID Dokter Pemerikasa : ");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(260, 360, 162, 19);
+        jLabel6.setBounds(290, 310, 162, 19);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Nama Pasien : ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(320, 320, 101, 19);
+        jLabel7.setBounds(350, 270, 101, 19);
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Nama Dokter Pemeriksa : ");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(240, 400, 178, 19);
+        jLabel8.setBounds(270, 350, 178, 19);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Kode Spesialisasi : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(290, 440, 136, 19);
+        jLabel9.setBounds(320, 390, 136, 19);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Ruang Perawatan : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(290, 530, 134, 19);
+        jLabel10.setBounds(320, 480, 134, 19);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Kode Poliklinik : ");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(310, 490, 116, 19);
+        jLabel11.setBounds(340, 440, 116, 19);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pemeriksaan : ");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(320, 670, 102, 19);
+        jLabel12.setBounds(350, 620, 102, 19);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tanggal Masuk : ");
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(310, 570, 117, 19);
+        jLabel13.setBounds(340, 520, 117, 19);
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tanggal Keluar : ");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(310, 610, 117, 19);
+        jLabel14.setBounds(340, 560, 117, 19);
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Pengobatan : ");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(330, 840, 96, 19);
+        jLabel15.setBounds(360, 790, 96, 19);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Tindakan : ");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(350, 750, 75, 19);
+        jLabel16.setBounds(380, 700, 75, 19);
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("ID pasien : ");
         jPanel1.add(jLabel17);
-        jLabel17.setBounds(350, 280, 77, 19);
+        jLabel17.setBounds(380, 230, 77, 19);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(440, 220, 190, 26);
+        cbRekamMedis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "Gawat Darurat" }));
+        jPanel1.add(cbRekamMedis);
+        cbRekamMedis.setBounds(470, 170, 190, 26);
+        jPanel1.add(tfIdPasien);
+        tfIdPasien.setBounds(470, 220, 190, 24);
 
-        jTextField1.setText("jTextField1");
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(440, 270, 190, 24);
-
-        jTextField2.setText("jTextField2");
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(440, 320, 670, 24);
-
-        jTextField3.setText("jTextField3");
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(440, 360, 190, 24);
-
-        jTextField4.setText("jTextField4");
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(440, 400, 670, 24);
-
-        jTextField5.setText("jTextField5");
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(440, 440, 187, 24);
-
-        jTextField6.setText("jTextField6");
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(440, 480, 187, 24);
-
-        jTextField7.setText("jTextField7");
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(440, 530, 277, 24);
-
-        jTextField8.setText("jTextField8");
-        jPanel1.add(jTextField8);
-        jTextField8.setBounds(440, 570, 187, 24);
-
-        jTextField9.setText("jTextField9");
-        jPanel1.add(jTextField9);
-        jTextField9.setBounds(440, 610, 187, 24);
-
-        jTextField10.setText("jTextField10");
-        jTextField10.addActionListener(new java.awt.event.ActionListener() {
+        tfNamaPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField10ActionPerformed(evt);
+                tfNamaPasienActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField10);
-        jTextField10.setBounds(440, 650, 670, 62);
+        jPanel1.add(tfNamaPasien);
+        tfNamaPasien.setBounds(470, 270, 670, 24);
+        jPanel1.add(tfIdDokter);
+        tfIdDokter.setBounds(470, 310, 190, 24);
+        jPanel1.add(tfNamaDokter);
+        tfNamaDokter.setBounds(470, 350, 670, 24);
+        jPanel1.add(tfKdSpesialisasi);
+        tfKdSpesialisasi.setBounds(470, 390, 187, 24);
+        jPanel1.add(tfKdPoli);
+        tfKdPoli.setBounds(470, 430, 187, 24);
+        jPanel1.add(tfRuangRawat);
+        tfRuangRawat.setBounds(470, 480, 277, 24);
+        jPanel1.add(tfTglMasuk);
+        tfTglMasuk.setBounds(470, 520, 187, 24);
+        jPanel1.add(tfTglKeluar);
+        tfTglKeluar.setBounds(470, 560, 187, 24);
 
-        jTextField11.setText("jTextField11");
-        jPanel1.add(jTextField11);
-        jTextField11.setBounds(440, 730, 670, 63);
-
-        jTextField12.setText("jTextField12");
-        jPanel1.add(jTextField12);
-        jTextField12.setBounds(440, 810, 670, 78);
+        tfPemeriksa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfPemeriksaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tfPemeriksa);
+        tfPemeriksa.setBounds(470, 600, 670, 62);
+        jPanel1.add(tfTindakan);
+        tfTindakan.setBounds(470, 680, 670, 63);
+        jPanel1.add(tfPengobatan);
+        tfPengobatan.setBounds(470, 760, 670, 78);
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("YYYY-MM-DD");
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(650, 610, 72, 16);
+        jLabel18.setBounds(680, 560, 72, 16);
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("YYYY-MM-DD");
         jPanel1.add(jLabel19);
-        jLabel19.setBounds(650, 570, 72, 16);
+        jLabel19.setBounds(680, 520, 72, 16);
 
         btnTambah.setBackground(new java.awt.Color(16, 120, 123));
         btnTambah.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setText("Tambah Rekam Medis");
         jPanel1.add(btnTambah);
-        btnTambah.setBounds(830, 910, 276, 46);
+        btnTambah.setBounds(860, 860, 276, 46);
 
         btnReset.setBackground(new java.awt.Color(16, 120, 123));
         btnReset.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
         btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnReset);
-        btnReset.setBounds(600, 910, 218, 46);
+        btnReset.setBounds(630, 860, 218, 46);
 
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 41.png"))); // NOI18N
@@ -316,6 +308,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
@@ -326,9 +319,30 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+    private void tfPemeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPemeriksaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField10ActionPerformed
+    }//GEN-LAST:event_tfPemeriksaActionPerformed
+
+    private void tfNamaPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamaPasienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNamaPasienActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        cbRekamMedis.setSelectedIndex(0);
+        tfIdPasien.setText("");
+        tfNamaPasien.setText("");
+        tfIdDokter.setText("");
+        tfNamaDokter.setText("");
+        tfKdPoli.setText("");
+        tfKdSpesialisasi.setText("");
+        tfPemeriksa.setText("");
+        tfRuangRawat.setText("");
+        tfTglMasuk.setText("");
+        tfTglKeluar.setText("");
+        tfTindakan.setText("");
+        tfPengobatan.setText("");        
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,7 +383,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JLabel btnBack;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbRekamMedis;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -391,17 +405,17 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField tfIdDokter;
+    private javax.swing.JTextField tfIdPasien;
+    private javax.swing.JTextField tfKdPoli;
+    private javax.swing.JTextField tfKdSpesialisasi;
+    private javax.swing.JTextField tfNamaDokter;
+    private javax.swing.JTextField tfNamaPasien;
+    private javax.swing.JTextField tfPemeriksa;
+    private javax.swing.JTextField tfPengobatan;
+    private javax.swing.JTextField tfRuangRawat;
+    private javax.swing.JTextField tfTglKeluar;
+    private javax.swing.JTextField tfTglMasuk;
+    private javax.swing.JTextField tfTindakan;
     // End of variables declaration//GEN-END:variables
 }

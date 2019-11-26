@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Model.Dokter;
 import medical.record.View.ViewDokter;
@@ -122,7 +121,7 @@ public class FunctionControl {
         }
     }
     
-    public void insertDokter(String nip, String nama, String spesialis, String poliklinik, String tglL, String gender,String tgl){
+      public void insertDokter(String nip, String nama, String spesialis, String poliklinik, String tglL, String gender,String tgl){
         if(conn != null){
             try{
                 String sql = "INSERT INTO dokter(id_dokter, nama_dokter, jns_kelamin, tgl_lahir,tgl_mulai_bekerja, kode_poliklinik, kode_spesialisasi) VALUES"
