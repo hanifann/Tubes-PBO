@@ -5,9 +5,20 @@
  */
 package medical.record.View;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
-import medical.record.Controller.Function;
+import medical.record.Controller.Conf;
+import medical.record.Controller.Service;
+import medical.record.Model.Spesialisasi;
 
 /**
  *
@@ -18,12 +29,84 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     /**
      * Creates new form ViewRekamMedis
      */
-    
-    Function function = new Function();
+    Connection conn;
+    Service function;
+    Auth auth = new Auth();
+    Conf conf = new Conf();
+    PreparedStatement sst;
     
     public ViewRekamMedis() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        function = new Service(conn);
+        conn = Conf.databaseConnected();
+        loadSpesialisCB();
+        loadPenyakitCB();
+        loadPoliklinikCB();
     }
+    
+     public void loadSpesialisCB(){
+        try {
+            String query = "SELECT * FROM spesialisasi";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet neSet = ps.executeQuery();
+            
+            while(neSet.next()){
+                Object[] obj = new Object[2];
+                obj[0] = neSet.getString(1);
+                obj[1] = neSet.getString(2);
+                cbKdSpesialis.addItem((String) obj[0] +" - "+ (String) obj[1]);
+            }
+            
+            neSet.close(); 
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+     
+     public void loadPenyakitCB(){
+        try {
+            String query = "SELECT * FROM penyakit";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet neSet = ps.executeQuery();
+            
+            while(neSet.next()){
+                Object[] obj = new Object[2];
+                obj[0] = neSet.getString(1);
+                obj[1] = neSet.getString(2);
+                cbKdPenyakit.addItem((String) obj[0] +" - "+ (String) obj[1]);
+            }
+            
+            neSet.close(); 
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+     
+     public void loadPoliklinikCB(){
+        try {
+            String query = "SELECT * FROM poliklinik";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet neSet = ps.executeQuery();
+            
+            while(neSet.next()){
+                Object[] obj = new Object[2];
+                obj[0] = neSet.getString(1);
+                obj[1] = neSet.getString(2);
+                cbKdPoliklinik.addItem((String) obj[0] +" - "+ (String) obj[1]);
+            }
+            
+            neSet.close(); 
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,27 +135,23 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        cbRekamMedis = new javax.swing.JComboBox<>();
-        tfIdPasien = new javax.swing.JTextField();
+        cbKdPoliklinik = new javax.swing.JComboBox<>();
         tfNamaPasien = new javax.swing.JTextField();
-        tfIdDokter = new javax.swing.JTextField();
         tfNamaDokter = new javax.swing.JTextField();
-        tfKdSpesialisasi = new javax.swing.JTextField();
-        tfKdPoli = new javax.swing.JTextField();
         tfRuangRawat = new javax.swing.JTextField();
-        tfTglMasuk = new javax.swing.JTextField();
-        tfTglKeluar = new javax.swing.JTextField();
+        tfIdDokter = new javax.swing.JTextField();
         tfPemeriksa = new javax.swing.JTextField();
         tfTindakan = new javax.swing.JTextField();
         tfPengobatan = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         btnTambah = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tfKdPenyakit = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
+        cbRekamMedis1 = new javax.swing.JComboBox<>();
+        cbKdSpesialis = new javax.swing.JComboBox<>();
+        cbKdPenyakit = new javax.swing.JComboBox<>();
+        tfIdPasien = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1440, 1024));
@@ -221,11 +300,8 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jPanel1.add(jLabel17);
         jLabel17.setBounds(380, 230, 77, 19);
 
-        cbRekamMedis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "Gawat Darurat" }));
-        jPanel1.add(cbRekamMedis);
-        cbRekamMedis.setBounds(470, 170, 190, 26);
-        jPanel1.add(tfIdPasien);
-        tfIdPasien.setBounds(470, 220, 190, 24);
+        jPanel1.add(cbKdPoliklinik);
+        cbKdPoliklinik.setBounds(470, 480, 190, 26);
 
         tfNamaPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,20 +310,12 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         });
         jPanel1.add(tfNamaPasien);
         tfNamaPasien.setBounds(470, 270, 670, 24);
-        jPanel1.add(tfIdDokter);
-        tfIdDokter.setBounds(470, 310, 190, 24);
         jPanel1.add(tfNamaDokter);
         tfNamaDokter.setBounds(470, 350, 670, 24);
-        jPanel1.add(tfKdSpesialisasi);
-        tfKdSpesialisasi.setBounds(470, 390, 187, 24);
-        jPanel1.add(tfKdPoli);
-        tfKdPoli.setBounds(470, 490, 187, 24);
         jPanel1.add(tfRuangRawat);
         tfRuangRawat.setBounds(470, 530, 277, 24);
-        jPanel1.add(tfTglMasuk);
-        tfTglMasuk.setBounds(470, 570, 187, 24);
-        jPanel1.add(tfTglKeluar);
-        tfTglKeluar.setBounds(470, 610, 187, 24);
+        jPanel1.add(tfIdDokter);
+        tfIdDokter.setBounds(470, 310, 187, 24);
 
         tfPemeriksa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,18 +328,6 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         tfTindakan.setBounds(470, 730, 670, 63);
         jPanel1.add(tfPengobatan);
         tfPengobatan.setBounds(470, 810, 670, 78);
-
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("YYYY-MM-DD");
-        jPanel1.add(jLabel18);
-        jLabel18.setBounds(680, 610, 72, 16);
-
-        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("YYYY-MM-DD");
-        jPanel1.add(jLabel19);
-        jLabel19.setBounds(680, 570, 72, 16);
 
         btnTambah.setBackground(new java.awt.Color(16, 120, 123));
         btnTambah.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -305,8 +361,6 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 42.png"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(1020, 820, 420, 210);
-        jPanel1.add(tfKdPenyakit);
-        tfKdPenyakit.setBounds(470, 440, 187, 24);
 
         jLabel20.setBackground(new java.awt.Color(255, 255, 255));
         jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -314,6 +368,23 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel20.setText("Kode Penyakit");
         jPanel1.add(jLabel20);
         jLabel20.setBounds(340, 440, 100, 19);
+
+        cbRekamMedis1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "Gawat Darurat" }));
+        jPanel1.add(cbRekamMedis1);
+        cbRekamMedis1.setBounds(470, 170, 190, 26);
+
+        cbKdSpesialis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKdSpesialisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbKdSpesialis);
+        cbKdSpesialis.setBounds(470, 390, 190, 26);
+
+        jPanel1.add(cbKdPenyakit);
+        cbKdPenyakit.setBounds(470, 440, 190, 26);
+        jPanel1.add(tfIdPasien);
+        tfIdPasien.setBounds(470, 230, 187, 24);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -352,37 +423,36 @@ public class ViewRekamMedis extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        cbRekamMedis.setSelectedIndex(0);
+        cbKdPoliklinik.setSelectedIndex(0);
         tfIdPasien.setText("");
         tfNamaPasien.setText("");
         tfIdDokter.setText("");
         tfNamaDokter.setText("");
-        tfKdPoli.setText("");
-        tfKdSpesialisasi.setText("");
+        cbKdPoliklinik.setSelectedIndex(0);
+        cbKdSpesialis.setSelectedIndex(0);
         tfPemeriksa.setText("");
         tfRuangRawat.setText("");
-        tfTglMasuk.setText("");
-        tfTglKeluar.setText("");
+        tfIdDokter.setText("");
+        //tfTglKeluar.setText("");
         tfTindakan.setText("");
         tfPengobatan.setText("");        
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // TODO add your handling code here:
-        String rekamMedis = cbRekamMedis.getSelectedItem().toString();
-        int idPasien = Integer.parseInt(tfIdPasien.getText());
-        String namaPasien = tfNamaPasien.getText();
-        int idDokter = Integer.parseInt(tfIdDokter.getText());
-        String namaDokter = tfNamaDokter.getText();
-        int kdPoli = Integer.parseInt(tfKdPoli.getText());
-        int kdSpesialisasi = Integer.parseInt(tfKdSpesialisasi.getText());
-        int kdPenyakit = Integer.parseInt(tfKdPenyakit.getText());
+        String rekamMedis = cbKdPoliklinik.getSelectedItem().toString();
+        int idPasien = Integer.parseInt(tfIdPasien.getText().toString());
+        int idDokter = Integer.parseInt(tfIdDokter.getText().toString());
+        int kdPoli = Integer.parseInt(cbKdPoliklinik.getSelectedItem().toString());
+        int kdSpesialisasi = Integer.parseInt(cbKdSpesialis.getSelectedItem().toString());
+        int kdPenyakit = Integer.parseInt(cbKdPenyakit.getSelectedItem().toString());
         String pemeriksa = tfPemeriksa.getText();
         String ruangRawat = tfRuangRawat.getText();
-        String tglMasuk = tfTglMasuk.getText();
-        String tglKeluar = tfTglKeluar.getText();
+        String tglMasuk = tfIdDokter.getText();
+        String tglKeluar = tfIdDokter.getText();
         String tindakan = tfTindakan.getText();
         String pengobatan = tfPengobatan.getText(); 
+        
         //inputan gk boleh kosong
         //inputan ID dan Kode harus berupa integer
 
@@ -403,6 +473,10 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "berhasil di tambahkan ");
         
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void cbKdSpesialisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdSpesialisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbKdSpesialisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,7 +517,10 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JLabel btnBack;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JComboBox<String> cbRekamMedis;
+    private javax.swing.JComboBox<String> cbKdPenyakit;
+    private javax.swing.JComboBox<String> cbKdPoliklinik;
+    private javax.swing.JComboBox<String> cbKdSpesialis;
+    private javax.swing.JComboBox<String> cbRekamMedis1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -453,8 +530,6 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
@@ -468,16 +543,11 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField tfIdDokter;
     private javax.swing.JTextField tfIdPasien;
-    private javax.swing.JTextField tfKdPenyakit;
-    private javax.swing.JTextField tfKdPoli;
-    private javax.swing.JTextField tfKdSpesialisasi;
     private javax.swing.JTextField tfNamaDokter;
     private javax.swing.JTextField tfNamaPasien;
     private javax.swing.JTextField tfPemeriksa;
     private javax.swing.JTextField tfPengobatan;
     private javax.swing.JTextField tfRuangRawat;
-    private javax.swing.JTextField tfTglKeluar;
-    private javax.swing.JTextField tfTglMasuk;
     private javax.swing.JTextField tfTindakan;
     // End of variables declaration//GEN-END:variables
 }
