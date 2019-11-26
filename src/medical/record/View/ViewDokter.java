@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Controller.Conf;
-import medical.record.Controller.FunctionControl;
+import medical.record.Controller.Function;
 import medical.record.Model.Dokter;
 
 /**
@@ -26,7 +26,7 @@ public class ViewDokter extends javax.swing.JFrame {
      * Creates new form ViewDOkter
      */
     
-    FunctionControl fc = new FunctionControl();
+    Function fc = new Function();
     
     public ViewDokter() {
         initComponents();

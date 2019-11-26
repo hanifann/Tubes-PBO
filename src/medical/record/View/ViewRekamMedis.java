@@ -5,6 +5,8 @@
  */
 package medical.record.View;
 
+import medical.record.Controller.Auth;
+
 /**
  *
  * @author Acer
@@ -268,6 +270,11 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         btnTambah.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnTambah.setForeground(new java.awt.Color(255, 255, 255));
         btnTambah.setText("Tambah Rekam Medis");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnTambah);
         btnTambah.setBounds(860, 860, 276, 46);
 
@@ -343,6 +350,30 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         tfTindakan.setText("");
         tfPengobatan.setText("");        
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
+        // TODO add your handling code here:
+        String rekamMedis = cbRekamMedis.getSelectedItem().toString();
+        int idPasien = Integer.parseInt(tfIdPasien.getText());
+        String namaPasien = tfNamaPasien.getText();
+        int idDokter = Integer.parseInt(tfIdDokter.getText());
+        String namaDokter = tfNamaDokter.getText();
+        int kdPoli = Integer.parseInt(tfKdPoli.getText());
+        int kdSpesialisasi = Integer.parseInt(tfKdSpesialisasi.getText());
+        String pemeriksa = tfPemeriksa.getText();
+        String ruangRawat = tfRuangRawat.getText();
+        String tglMasuk = tfTglMasuk.getText();
+        String tglKeluar = tfTglKeluar.getText();
+        String tindakan = tfTindakan.getText();
+        String pengobatan = tfPengobatan.getText(); 
+        
+        //inputan gk boleh kosong
+        //inputan ID dan Kode harus berupa integer
+        
+        
+        
+        
+    }//GEN-LAST:event_btnTambahActionPerformed
 
     /**
      * @param args the command line arguments

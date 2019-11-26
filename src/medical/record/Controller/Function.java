@@ -20,14 +20,18 @@ import medical.record.View.ViewDokter;
  *
  * @author Acer
  */
-public class FunctionControl {
+public class Function {
     
     DefaultTableModel modelDokter, modelPasien, modelRekamMedis, modelPoliklinik;
     ArrayList<Dokter> listDokter;
     Dokter dokter;
     Connection conn;
+
+    public Function(Connection conn) {
+        this.conn = conn;
+    }
     
-    public FunctionControl() {
+    public Function() {
         modelDokter = new DefaultTableModel();
         modelPasien = new DefaultTableModel();
         modelRekamMedis = new DefaultTableModel();
@@ -142,4 +146,23 @@ public class FunctionControl {
         }
         
     }
+      
+      public void addRekamMedik(){
+          if(conn != null){
+              String query = "INSERT INTO medical_record(id_medical_record,"
+                      + " jenis_rekam_medis, "
+                      + "id_pasien, "
+                      + "id_karyawan, "
+                      + "id_dokter, "
+                      + "kode_spesialisasi, "
+                      + "kode_poliklinik, "
+                      + "kode_penyakit, "
+                      + "ruang_perawatan, "
+                      + "tgl_masuk, "
+                      + "tgl_keluar)";
+          }else{
+              System.out.println("Database not connected");
+          }
+      
+      }
 }
