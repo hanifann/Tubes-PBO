@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Controller.Conf;
-import medical.record.Controller.Function;
+import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
 
 /**
@@ -26,7 +26,7 @@ public class ViewDokter extends javax.swing.JFrame {
      * Creates new form ViewDOkter
      */
     
-    Function fc = new Function();
+    Service fc = new Service();
     
     public ViewDokter() {
         initComponents();
@@ -51,7 +51,7 @@ public class ViewDokter extends javax.swing.JFrame {
         btnBack = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tfCari = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDokter = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -125,15 +125,15 @@ public class ViewDokter extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(1005, 58, 370, 110);
 
-        jTextField2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jTextField2.setText(" Cari Dokter...");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        tfCari.setText(" Cari Dokter...");
+        tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                tfCariActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(170, 290, 750, 50);
+        jPanel1.add(tfCari);
+        tfCari.setBounds(170, 290, 750, 50);
 
         tblDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tblDokter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -208,9 +208,9 @@ public class ViewDokter extends javax.swing.JFrame {
         fc.readDokter();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tfCariActionPerformed
 
     private void tblDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDokterMouseClicked
         // TODO add your handling code here:
@@ -263,7 +263,7 @@ public class ViewDokter extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable tblDokter;
+    private javax.swing.JTextField tfCari;
     // End of variables declaration//GEN-END:variables
 }
