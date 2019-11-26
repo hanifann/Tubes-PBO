@@ -14,7 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Model.Dokter;
+import medical.record.Model.Pasien;
 import medical.record.View.ViewDokter;
+import medical.record.View.ViewRekamMedis;
 
 /**
  *
@@ -23,9 +25,17 @@ import medical.record.View.ViewDokter;
 public class Function {
     
     DefaultTableModel modelDokter, modelPasien, modelRekamMedis, modelPoliklinik;
-    ArrayList<Dokter> listDokter;
+    
     Dokter dokter;
+    ArrayList<Dokter> listDokter;
+    
+    Pasien pasien;
+    ArrayList<Pasien> listPasien;
+    
+            
+    
     Connection conn;
+    
 
     public Function(Connection conn) {
         this.conn = conn;
@@ -147,19 +157,55 @@ public class Function {
         
     }
       
-      public void addRekamMedik(){
+      public void addRekamMedik(
+              int idPasien,  
+              int idDokter, 
+              int kdSpesialisasi, 
+              int kdPoliklinik, 
+              int kdPenyakit, 
+              String jenisRM, 
+              String ruangPerawatan, 
+              String tglMasuk,
+              String tglKeluar,
+              String Pemeriksaan,
+              String Tindakan,
+              String Pengobatan){
           if(conn != null){
-              String query = "INSERT INTO medical_record(id_medical_record,"
-                      + " jenis_rekam_medis, "
-                      + "id_pasien, "
-                      + "id_karyawan, "
-                      + "id_dokter, "
-                      + "kode_spesialisasi, "
-                      + "kode_poliklinik, "
-                      + "kode_penyakit, "
-                      + "ruang_perawatan, "
-                      + "tgl_masuk, "
-                      + "tgl_keluar)";
+              try{
+              String query = "INSERT INTO medical_record("
+                      + "jenis_rekam_medis, " //1
+                      + "id_pasien, " //2
+                      + "id_dokter, " //3
+                      + "kode_spesialisasi, " //4
+                      + "kode_poliklinik, "  //5
+                      + "kode_penyakit, " //6
+                      + "ruang_perawatan, "  //7
+                      + "tgl_masuk, "  //8
+                      + "tgl_keluar,"  //9
+                      + "pemeriksaan, "  //11
+                      + "tindakan, "  //12
+                      + "pengobatan) "  //13
+                      + "VALUES(" 
+                      + "?,?,?,?,?,"
+                      + "?,?,?,?,?,"
+                      + "?,?)";
+             PreparedStatement ps = conn.prepareStatement(query);
+             ps.setString(1, jenisRM);
+             ps.setInt(2, idPasien);
+             ps.setInt(3, idDokter);
+             ps.setInt(4, kdSpesialisasi);
+             ps.setInt(5, kdPoliklinik);
+             ps.setInt(6, kdPenyakit);
+             ps.setString(7, ruangPerawatan);
+             ps.setString(8, tglMasuk);
+             ps.setString(9, tglKeluar);
+             ps.setString(10, Pemeriksaan);
+             ps.setString(11, Tindakan);
+             ps.setString(12, Pengobatan);
+            }catch(SQLException e){
+                Logger.getLogger(ViewRekamMedis.class.getName()).log(Level.SEVERE,null,e);
+            }
+              
           }else{
               System.out.println("Database not connected");
           }

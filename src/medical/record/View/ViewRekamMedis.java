@@ -5,7 +5,9 @@
  */
 package medical.record.View;
 
+import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
+import medical.record.Controller.Function;
 
 /**
  *
@@ -16,6 +18,9 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     /**
      * Creates new form ViewRekamMedis
      */
+    
+    Function function = new Function();
+    
     public ViewRekamMedis() {
         initComponents();
     }
@@ -66,6 +71,8 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        tfKdPenyakit = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1440, 1024));
@@ -163,49 +170,49 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Ruang Perawatan : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(320, 480, 134, 19);
+        jLabel10.setBounds(320, 530, 134, 19);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Kode Poliklinik : ");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(340, 440, 116, 19);
+        jLabel11.setBounds(340, 490, 116, 19);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pemeriksaan : ");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(350, 620, 102, 19);
+        jLabel12.setBounds(350, 670, 102, 19);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tanggal Masuk : ");
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(340, 520, 117, 19);
+        jLabel13.setBounds(340, 570, 117, 19);
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tanggal Keluar : ");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(340, 560, 117, 19);
+        jLabel14.setBounds(340, 610, 117, 19);
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Pengobatan : ");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(360, 790, 96, 19);
+        jLabel15.setBounds(360, 840, 96, 19);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Tindakan : ");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(380, 700, 75, 19);
+        jLabel16.setBounds(380, 750, 75, 19);
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -234,13 +241,13 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jPanel1.add(tfKdSpesialisasi);
         tfKdSpesialisasi.setBounds(470, 390, 187, 24);
         jPanel1.add(tfKdPoli);
-        tfKdPoli.setBounds(470, 430, 187, 24);
+        tfKdPoli.setBounds(470, 490, 187, 24);
         jPanel1.add(tfRuangRawat);
-        tfRuangRawat.setBounds(470, 480, 277, 24);
+        tfRuangRawat.setBounds(470, 530, 277, 24);
         jPanel1.add(tfTglMasuk);
-        tfTglMasuk.setBounds(470, 520, 187, 24);
+        tfTglMasuk.setBounds(470, 570, 187, 24);
         jPanel1.add(tfTglKeluar);
-        tfTglKeluar.setBounds(470, 560, 187, 24);
+        tfTglKeluar.setBounds(470, 610, 187, 24);
 
         tfPemeriksa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,23 +255,23 @@ public class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(tfPemeriksa);
-        tfPemeriksa.setBounds(470, 600, 670, 62);
+        tfPemeriksa.setBounds(470, 650, 670, 62);
         jPanel1.add(tfTindakan);
-        tfTindakan.setBounds(470, 680, 670, 63);
+        tfTindakan.setBounds(470, 730, 670, 63);
         jPanel1.add(tfPengobatan);
-        tfPengobatan.setBounds(470, 760, 670, 78);
+        tfPengobatan.setBounds(470, 810, 670, 78);
 
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("YYYY-MM-DD");
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(680, 560, 72, 16);
+        jLabel18.setBounds(680, 610, 72, 16);
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("YYYY-MM-DD");
         jPanel1.add(jLabel19);
-        jLabel19.setBounds(680, 520, 72, 16);
+        jLabel19.setBounds(680, 570, 72, 16);
 
         btnTambah.setBackground(new java.awt.Color(16, 120, 123));
         btnTambah.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -276,7 +283,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnTambah);
-        btnTambah.setBounds(860, 860, 276, 46);
+        btnTambah.setBounds(860, 910, 276, 46);
 
         btnReset.setBackground(new java.awt.Color(16, 120, 123));
         btnReset.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -288,7 +295,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnReset);
-        btnReset.setBounds(630, 860, 218, 46);
+        btnReset.setBounds(630, 910, 218, 46);
 
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 41.png"))); // NOI18N
@@ -298,6 +305,15 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 42.png"))); // NOI18N
         jPanel1.add(jLabel5);
         jLabel5.setBounds(1020, 820, 420, 210);
+        jPanel1.add(tfKdPenyakit);
+        tfKdPenyakit.setBounds(470, 440, 187, 24);
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Kode Penyakit");
+        jPanel1.add(jLabel20);
+        jLabel20.setBounds(340, 440, 100, 19);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -360,18 +376,31 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         String namaDokter = tfNamaDokter.getText();
         int kdPoli = Integer.parseInt(tfKdPoli.getText());
         int kdSpesialisasi = Integer.parseInt(tfKdSpesialisasi.getText());
+        int kdPenyakit = Integer.parseInt(tfKdPenyakit.getText());
         String pemeriksa = tfPemeriksa.getText();
         String ruangRawat = tfRuangRawat.getText();
         String tglMasuk = tfTglMasuk.getText();
         String tglKeluar = tfTglKeluar.getText();
         String tindakan = tfTindakan.getText();
         String pengobatan = tfPengobatan.getText(); 
-        
         //inputan gk boleh kosong
         //inputan ID dan Kode harus berupa integer
-        
-        
-        
+
+        function.addRekamMedik(
+                idPasien,
+                idDokter,
+                kdSpesialisasi,
+                kdPoli,
+                kdPenyakit,
+                rekamMedis,
+                ruangRawat,
+                tglMasuk,
+                tglKeluar,
+                pemeriksa,
+                tindakan,
+                pengobatan
+        );
+        JOptionPane.showMessageDialog(this, "berhasil di tambahkan ");
         
     }//GEN-LAST:event_btnTambahActionPerformed
 
@@ -427,6 +456,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -438,6 +468,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField tfIdDokter;
     private javax.swing.JTextField tfIdPasien;
+    private javax.swing.JTextField tfKdPenyakit;
     private javax.swing.JTextField tfKdPoli;
     private javax.swing.JTextField tfKdSpesialisasi;
     private javax.swing.JTextField tfNamaDokter;
