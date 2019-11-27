@@ -321,10 +321,7 @@ public class Service {
                       + "pemeriksaan, "  //11
                       + "tindakan, "  //12
                       + "pengobatan) "  //13
-                      + "VALUES(" 
-                      + "?,?,?,?,?,"
-                      + "?,?,?,?,?,"
-                      + "?,?)";
+                      + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
              preparedStatement = conn.prepareStatement(query);
              preparedStatement.setString(1, jenisRM);
              preparedStatement.setInt(2, idPasien);
