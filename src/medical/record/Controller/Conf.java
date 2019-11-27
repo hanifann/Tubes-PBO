@@ -15,7 +15,7 @@ public class Conf {
     private static Connection conn;
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_NAME = "db_rekam_medis";
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/"+DB_NAME;
+    private static final String DB_URL = "jdbc:mysql://localhost/"+DB_NAME+"?serverTimezone=UTC";
     private static final String DB_UNAME = "root";
     private static final String DB_PASS = "";   
     
@@ -27,7 +27,7 @@ public class Conf {
                 }catch(ClassNotFoundException e){
                     System.err.format("Class not found");
                 }catch(SQLException e){
-                    System.err.format("SQL State: %s\n%",e.getSQLState(),e.getMessage());
+                    System.err.format("SQL State: " +e.getSQLState(),e.getMessage());
                 }catch(Exception e){
                 e.printStackTrace();
             }

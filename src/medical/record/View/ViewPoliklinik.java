@@ -5,6 +5,7 @@
  */
 package medical.record.View;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,10 +31,19 @@ public class ViewPoliklinik extends javax.swing.JFrame {
     
     public ViewPoliklinik() {
         initComponents();
-        tblDokter.setModel(fc.getModelDokter());
-        fc.setTableDokter();
-        fc.loadDokter();
-        fc.readDokter();
+        tblPoli.setModel(fc.getModelPoliklinik());
+        fc.setTablePoliklinik();
+        fc.loadPoliklinik();
+        fc.readPoliklinik();
+    }
+    
+    private void cari(){
+        try {
+            int keword = Integer.parseInt(tfCari.getText());
+            fc.CariDokter(keword); 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "isian harus berupa angka");
+        }        
     }
 
     /**
@@ -49,11 +59,11 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         btnCari = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnBack = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfCari = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDokter = new javax.swing.JTable();
+        tblPoli = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -66,6 +76,7 @@ public class ViewPoliklinik extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         jPanel1.setMaximumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setMinimumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
@@ -76,6 +87,11 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCariActionPerformed(evt);
+            }
+        });
+        btnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCariKeyPressed(evt);
             }
         });
         jPanel1.add(btnCari);
@@ -90,7 +106,9 @@ public class ViewPoliklinik extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Dokter.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Poliklinik");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,32 +117,31 @@ public class ViewPoliklinik extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGap(109, 109, 109)
+                .addComponent(jLabel1)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46))))
+                .addComponent(btnBack)
+                .addGap(23, 23, 23))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 58, 0, 112);
+        jPanel2.setBounds(0, 58, 547, 112);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 27.png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText("cari id dokter..");
+        tfCari.setText("cari id poliklinik..");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);
@@ -133,24 +150,24 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         jPanel1.add(tfCari);
         tfCari.setBounds(170, 290, 750, 50);
 
-        tblDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tblDokter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        tblDokter.setModel(new javax.swing.table.DefaultTableModel(
+        tblPoli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblPoli.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tblPoli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "NIP", "Nama", "Spesialis", "Poliklinik", "Tanggal Mulai Kerja", "No Telepon"
+                "Kode Poliklinik", "Nama Poliklinik", "Spesialis", "Penyakit"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -161,17 +178,17 @@ public class ViewPoliklinik extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDokter.setAlignmentX(1.0F);
-        tblDokter.setAlignmentY(1.0F);
-        tblDokter.setRowHeight(30);
-        tblDokter.setRowMargin(2);
-        tblDokter.setSelectionBackground(new java.awt.Color(43, 193, 199));
-        tblDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblPoli.setAlignmentX(1.0F);
+        tblPoli.setAlignmentY(1.0F);
+        tblPoli.setRowHeight(30);
+        tblPoli.setRowMargin(2);
+        tblPoli.setSelectionBackground(new java.awt.Color(43, 193, 199));
+        tblPoli.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDokterMouseClicked(evt);
+                tblPoliMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDokter);
+        jScrollPane1.setViewportView(tblPoli);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(167, 390, 1090, 472);
@@ -202,22 +219,24 @@ public class ViewPoliklinik extends javax.swing.JFrame {
 
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        try {
-            int keword = Integer.parseInt(tfCari.getText());
-            fc.CariDokter(keword); 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "isian harus berupa angka");
-        }        
+        cari();
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCariActionPerformed
 
-    private void tblDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDokterMouseClicked
+    private void tblPoliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPoliMouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "test");
-    }//GEN-LAST:event_tblDokterMouseClicked
+    }//GEN-LAST:event_tblPoliMouseClicked
+
+    private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            cari();
+        }
+    }//GEN-LAST:event_btnCariKeyPressed
 
     /**
      * @param args the command line arguments
@@ -260,14 +279,14 @@ public class ViewPoliklinik extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
     private javax.swing.JButton btnCari;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblDokter;
+    private javax.swing.JTable tblPoli;
     private javax.swing.JTextField tfCari;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
  */
 package medical.record.View;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -78,6 +79,11 @@ public class ViewDokter extends javax.swing.JFrame {
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCariActionPerformed(evt);
+            }
+        });
+        btnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCariKeyPressed(evt);
             }
         });
         jPanel1.add(btnCari);
@@ -202,14 +208,17 @@ public class ViewDokter extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        // TODO add your handling code here:
+    private void cari(){
         try {
             int keword = Integer.parseInt(tfCari.getText());
             fc.CariDokter(keword); 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "isian harus berupa angka");
-        }        
+        } 
+    }
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+        cari();
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
@@ -220,6 +229,13 @@ public class ViewDokter extends javax.swing.JFrame {
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "test");
     }//GEN-LAST:event_tblDokterMouseClicked
+
+    private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            cari();
+        }
+    }//GEN-LAST:event_btnCariKeyPressed
 
     /**
      * @param args the command line arguments

@@ -72,6 +72,7 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCariActionPerformed"/>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnCariKeyPressed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -185,7 +186,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tblDokter">
+            <Component class="javax.swing.JTable" name="tblPasien">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -197,12 +198,12 @@
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="4">
-                    <Column editable="false" title="NIP" type="java.lang.String"/>
+                    <Column editable="false" title="ID Pasien" type="java.lang.String"/>
                     <Column editable="false" title="Nama" type="java.lang.String"/>
-                    <Column editable="false" title="Spesialis" type="java.lang.String"/>
-                    <Column editable="false" title="Poliklinik" type="java.lang.String"/>
-                    <Column editable="false" title="Tanggal Mulai Kerja" type="java.lang.String"/>
-                    <Column editable="false" title="No Telepon" type="java.lang.String"/>
+                    <Column editable="false" title="Tanggal Lahir" type="java.lang.String"/>
+                    <Column editable="false" title="Umur" type="java.lang.String"/>
+                    <Column editable="false" title="Telepon" type="java.lang.String"/>
+                    <Column editable="false" title="Alamat" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="alignmentX" type="float" value="1.0"/>
@@ -251,7 +252,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDokterMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblPasienMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

@@ -6,6 +6,7 @@
  */
 package medical.record.View;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,10 +32,10 @@ public class ViewPasien extends javax.swing.JFrame {
     
     public ViewPasien() {
         initComponents();
-        tblDokter.setModel(fc.getModelDokter());
-        fc.setTableDokter();
-        fc.loadDokter();
-        fc.readDokter();
+        tblPasien.setModel(fc.getModelPasien());
+        fc.setTablePasien();
+        fc.loadPasien();
+        fc.readPasien();
     }
 
     /**
@@ -54,7 +55,7 @@ public class ViewPasien extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfCari = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblDokter = new javax.swing.JTable();
+        tblPasien = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -77,6 +78,11 @@ public class ViewPasien extends javax.swing.JFrame {
         btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCariActionPerformed(evt);
+            }
+        });
+        btnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnCariKeyPressed(evt);
             }
         });
         jPanel1.add(btnCari);
@@ -136,9 +142,9 @@ public class ViewPasien extends javax.swing.JFrame {
         jPanel1.add(tfCari);
         tfCari.setBounds(170, 290, 750, 50);
 
-        tblDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tblDokter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        tblDokter.setModel(new javax.swing.table.DefaultTableModel(
+        tblPasien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tblPasien.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        tblPasien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -146,7 +152,7 @@ public class ViewPasien extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NIP", "Nama", "Spesialis", "Poliklinik", "Tanggal Mulai Kerja", "No Telepon"
+                "ID Pasien", "Nama", "Tanggal Lahir", "Umur", "Telepon", "Alamat"
             }
         ) {
             Class[] types = new Class [] {
@@ -164,17 +170,17 @@ public class ViewPasien extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblDokter.setAlignmentX(1.0F);
-        tblDokter.setAlignmentY(1.0F);
-        tblDokter.setRowHeight(30);
-        tblDokter.setRowMargin(2);
-        tblDokter.setSelectionBackground(new java.awt.Color(43, 193, 199));
-        tblDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblPasien.setAlignmentX(1.0F);
+        tblPasien.setAlignmentY(1.0F);
+        tblPasien.setRowHeight(30);
+        tblPasien.setRowMargin(2);
+        tblPasien.setSelectionBackground(new java.awt.Color(43, 193, 199));
+        tblPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblDokterMouseClicked(evt);
+                tblPasienMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblDokter);
+        jScrollPane1.setViewportView(tblPasien);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(167, 390, 1090, 472);
@@ -203,24 +209,35 @@ public class ViewPasien extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
-        // TODO add your handling code here:
+    private void cari(){
         try {
             int keword = Integer.parseInt(tfCari.getText());
             fc.CariDokter(keword); 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "isian harus berupa angka");
-        }        
+        }  
+    }
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
+        // TODO add your handling code here:
+              
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
         // TODO add your handling code here:
+        cari();
     }//GEN-LAST:event_tfCariActionPerformed
 
-    private void tblDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDokterMouseClicked
+    private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(this, "test");
-    }//GEN-LAST:event_tblDokterMouseClicked
+    }//GEN-LAST:event_tblPasienMouseClicked
+
+    private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            cari();
+        }
+    }//GEN-LAST:event_btnCariKeyPressed
 
     /**
      * @param args the command line arguments
@@ -270,7 +287,7 @@ public class ViewPasien extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblDokter;
+    private javax.swing.JTable tblPasien;
     private javax.swing.JTextField tfCari;
     // End of variables declaration//GEN-END:variables
 }

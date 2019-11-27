@@ -132,11 +132,10 @@ public class Service {
                       va.getId_pasien(),
                       va.getNamaPasien(),
                       va.getTglLahirPasien(),
-                      va.getUmur(),
                       va.getNoTelpPasien(),
-                      va.getGenderPasien(),
                       va.getPekerjaanPasien(),
                       va.getAlamatPasien()
+                      
                   }
             );
         }
@@ -284,6 +283,9 @@ public class Service {
                 preparedStatement.setString(5, tgl);
                 preparedStatement.setString(6, poliklinik);
                 preparedStatement.setString(7, spesialis);
+                
+                preparedStatement.executeUpdate();
+            
                 
                 
             }catch(SQLException e){
