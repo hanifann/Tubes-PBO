@@ -7,7 +7,7 @@ package medical.record.View;
 
 import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
-import medical.record.Controller.Function;
+import medical.record.Controller.Service;
 import medical.record.Model.Karyawan;
 
 /**
@@ -32,6 +32,7 @@ public class ViewDashboard extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.auth = auth;
+        labelNama.setText(auth.getNamaKaryawan());
     }
 
     public ViewDashboard() {
@@ -52,7 +53,7 @@ public class ViewDashboard extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        labelNama = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnDokter = new javax.swing.JLabel();
         btnLogout = new javax.swing.JLabel();
@@ -88,12 +89,12 @@ public class ViewDashboard extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(1030, 780, 420, 210);
 
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Dr David");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(640, 240, 150, 50);
+        labelNama.setBackground(new java.awt.Color(255, 255, 255));
+        labelNama.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        labelNama.setForeground(new java.awt.Color(0, 0, 0));
+        labelNama.setText("Dr David");
+        jPanel1.add(labelNama);
+        labelNama.setBounds(680, 240, 150, 50);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
@@ -248,7 +249,7 @@ public class ViewDashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelNama;
     // End of variables declaration//GEN-END:variables
 }

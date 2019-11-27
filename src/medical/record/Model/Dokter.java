@@ -21,6 +21,8 @@ public class Dokter extends Auth{
     private String tglMulaiKerja;
     private String noTelpDokter;
     private String alamatDokter;
+    private String namaPoliklinik;
+    private String namaSpesialisasi;
     
 
     public Dokter() {
@@ -37,6 +39,19 @@ public class Dokter extends Auth{
         this.alamatDokter = alamatDokter;
         this.tglMulaiKerja = tglMulaiKerja;
     }
+
+    public Dokter(int id_dokter, String namaDokter, String genderDokter, String tglLahirDokter, String tglMulaiKerja, String noTelpDokter, String alamatDokter, String namaPoliklinik, String namaSpesialisasi) {
+        this.id_dokter = id_dokter;
+        this.namaDokter = namaDokter;
+        this.genderDokter = genderDokter;
+        this.tglLahirDokter = tglLahirDokter;
+        this.tglMulaiKerja = tglMulaiKerja;
+        this.noTelpDokter = noTelpDokter;
+        this.alamatDokter = alamatDokter;
+        this.namaPoliklinik = namaPoliklinik;
+        this.namaSpesialisasi = namaSpesialisasi;
+    }
+    
 
     public int getId_dokter() {
         return id_dokter;
@@ -109,6 +124,24 @@ public class Dokter extends Auth{
     public void setTglMulaiKerja(String tglMulaiKerja) {
         this.tglMulaiKerja = tglMulaiKerja;
     }
+
+    public String getNamaPoliklinik() {
+        return namaPoliklinik;
+    }
+
+    public void setNamaPoliklinik(String namaPoliklinik) {
+        this.namaPoliklinik = namaPoliklinik;
+    }
+
+    public String getNamaSpesialisasi() {
+        return namaSpesialisasi;
+    }
+
+    public void setNamaSpesialisasi(String namaSpesialisasi) {
+        this.namaSpesialisasi = namaSpesialisasi;
+    }
+    
+    
 
    
 }

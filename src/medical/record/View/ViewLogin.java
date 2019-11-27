@@ -9,6 +9,7 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
+import medical.record.Model.Karyawan;
 
 /**
  *
@@ -161,11 +162,12 @@ public class ViewLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "NIP dan password tidak boleh kosong");
         }else{
             authentication = new Auth(conn, username, password);
+            Karyawan karyawan = authentication.session();
             if(authentication.Login(username, password)){    
                 JOptionPane.showMessageDialog(this, "Login Berhasil");
                 dispose();
                 
-                ViewDashboard menu = new ViewDashboard();
+                ViewDashboard menu = new ViewDashboard(karyawan);
                 menu.setVisible(true);
                 menu.setLocationRelativeTo(null);
             }else{

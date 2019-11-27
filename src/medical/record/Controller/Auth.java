@@ -28,6 +28,11 @@ public class Auth {
     private int id;
     private String password;
 
+    public int getId() {
+        return id;
+    }
+
+    
     public Auth() {
     }
 
@@ -68,6 +73,7 @@ public class Auth {
                 ps.setString(2 , pass);
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()){
+                    String nama = rs.getString("nama_karyawan");
                     status = true;
                 }
             }catch(SQLException e){
@@ -99,7 +105,7 @@ public class Auth {
          Karyawan karyawan = null;
          if(conn != null){
              try{
-                String query = "SELECT * FROM tb_akun WHERE username = ? AND password = ?";           
+                String query = "SELECT * FROM karyawan WHERE id_karyawan = ? AND password = ?";           
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setInt(1, id);
                 ps.setString(2 , password);
@@ -107,7 +113,7 @@ public class Auth {
                 if(rs.next()){
                     karyawan = new Karyawan(
                             rs.getInt("id_karyawan"),
-                            rs.getString("nama_kayawan"),
+                            rs.getString("nama_karyawan"),
                             rs.getString("jns_kelamin"),
                             rs.getString("tgl_lahir"),
                             rs.getString("tgl_mulai_bekerja")

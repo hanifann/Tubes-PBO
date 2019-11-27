@@ -26,8 +26,22 @@ public class Spesialisasi extends Penyakit{
         this.kode_spesialisasi = kode_spesialisasi;
         this.namaSpesialisasi = namaSpesialisasi;
     }
-    
-    
+
+    public int getKode_spesialisasi() {
+        return kode_spesialisasi;
+    }
+
+    public void setKode_spesialisasi(int kode_spesialisasi) {
+        this.kode_spesialisasi = kode_spesialisasi;
+    }
+
+    public String getNamaSpesialisasi() {
+        return namaSpesialisasi;
+    }
+
+    public void setNamaSpesialisasi(String namaSpesialisasi) {
+        this.namaSpesialisasi = namaSpesialisasi;
+    }  
     
     
    

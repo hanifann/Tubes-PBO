@@ -71,6 +71,18 @@ public class Service {
         return modelDokter;
     }
     
+    public DefaultTableModel getModelPasien() {
+        return modelPasien;
+    }
+    
+    public DefaultTableModel getModelPoliklinik() {
+        return modelPoliklinik;
+    }
+    
+    public DefaultTableModel getModelRM() {
+        return modelRekamMedis;
+    }
+    
     public void setTableDokter(){
         modelDokter.addColumn("NIP");
         modelDokter.addColumn("Nama");
@@ -89,11 +101,11 @@ public class Service {
         modelPasien.addColumn("Alamat");
     }
     
-    public void setTableRekamMedis(){}
-    
     public void setTablePoliklinik(){
         modelPasien.addColumn("Kode Poli");
         modelPasien.addColumn("Nama Poliklinik");
+        modelPasien.addColumn("Spesialis");
+        modelPasien.addColumn("Dokter");
     }
     
     public void readDokter(){
@@ -111,6 +123,39 @@ public class Service {
             );
         }
     }
+    
+    public void readPasien(){
+        modelPasien.setRowCount(0);
+        for (Pasien va: listPasien) {
+            modelPasien.addRow(
+                  new Object[]{
+                      va.getId_pasien(),
+                      va.getNamaPasien(),
+                      va.getTglLahirPasien(),
+                      va.getUmur(),
+                      va.getNoTelpPasien(),
+                      va.getGenderPasien(),
+                      va.getPekerjaanPasien(),
+                      va.getAlamatPasien()
+                  }
+            );
+        }
+    }
+    
+    public void readKaryawan(){}
+    
+    public void readPoliklinik(){
+        modelPoliklinik.setRowCount(0);
+//        for (poliklinik po : listPoliklinik) {
+//            modelPoliklinik.addRow(
+//                    new Object[]{
+//                        po.
+//                    }
+//            );
+//        }
+    }
+    
+    public void readRekamMedis(){}
     
     public void loadDokter(){
         if(conn != null){
@@ -133,7 +178,7 @@ public class Service {
                     String kdPoli = neSet.getString("nama_poliklinik");
                     String kdSpesialis = neSet.getString("nama_spesialisasi");
                     
-                    Dokter dokter = new Dokter(
+                    dokter = new Dokter(
                             idDokter, 
                             nama, 
                             gender, 
@@ -146,11 +191,70 @@ public class Service {
                     );
                     listDokter.add(dokter);
                 }
-                listDokter.size();
                 neSet.close();
                 preparedStatement.close();
             }catch(SQLException ex){
                 Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,ex);     
+            }
+        }else{
+            System.out.println("Disconnected");
+        }
+    }
+    
+    public void loadPasien(){
+        if(conn != null){
+            try {
+                String query = "SELECT * FROM pasien";
+                listPasien = new ArrayList<>();
+                preparedStatement =  conn.prepareStatement(query);
+                neSet = preparedStatement.executeQuery();
+                while(neSet.next()){
+                    int idPasien = neSet.getInt("id_pasien");
+                    String namaPasien = neSet.getString("nama_pasien");
+                    String tglLahir = neSet.getString("tgl_lahir");
+                    int umur = neSet.getInt("umur");
+                    String noTelp = neSet.getString("telepon");
+                    String gender = neSet.getString("jns_kelamin");
+                    String pekerjaan = neSet.getString("pekerjaan");
+                    String alamat = neSet.getString("alamat");
+                    
+                    pasien = new Pasien(
+                            idPasien, 
+                            namaPasien, 
+                            gender, 
+                            tglLahir, 
+                            noTelp, 
+                            alamat, 
+                            pekerjaan, 
+                            umur);
+                    listPasien.add(pasien);
+                }
+                neSet.close();
+                preparedStatement.close();
+                
+            } catch (Exception e) {
+                Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,e);     
+            }
+        }else{
+            System.out.println("Disconnected");
+        }
+    }
+    
+    public void loadPoliklinik(){
+        if(conn != null){
+            try {
+                String query = "SELECT * FROM poliklinik "
+                        + "JOIN spesialisasi ON poliklinik.kode_spesialisasi = spesialisasi.kode_spesialisasi "
+                        + "JOIN penyakit ON spesialisasi.kode_penyakit = penyakit.kode_penyakit "
+                        + "ORDER BY poliklinik.kode_poliklinik";
+                listPoliklinik = new ArrayList<Poliklinik>();
+                preparedStatement =  conn.prepareStatement(query);
+                neSet = preparedStatement.executeQuery();
+                while(neSet.next()){
+                
+                }
+            } catch (Exception e) {
+                Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,e);     
             }
         }else{
             System.out.println("Disconnected");
@@ -234,6 +338,7 @@ public class Service {
              preparedStatement.setString(10, Pemeriksaan);
              preparedStatement.setString(11, Tindakan);
              preparedStatement.setString(12, Pengobatan);
+                  System.out.println("berhasil oiy");
             }catch(SQLException e){
                 Logger.getLogger(ViewRekamMedis.class.getName()).log(Level.SEVERE,null,e);
             }

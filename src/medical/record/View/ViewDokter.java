@@ -46,7 +46,7 @@ public class ViewDokter extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnCari = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnBack = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,15 +73,15 @@ public class ViewDokter extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setLayout(null);
 
-        jButton1.setBackground(new java.awt.Color(16, 120, 123));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Cari.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCari.setBackground(new java.awt.Color(16, 120, 123));
+        btnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Cari.png"))); // NOI18N
+        btnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCariActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(990, 290, 267, 50);
+        jPanel1.add(btnCari);
+        btnCari.setBounds(990, 290, 267, 50);
 
         jPanel2.setBackground(new java.awt.Color(42, 147, 151));
 
@@ -126,7 +126,7 @@ public class ViewDokter extends javax.swing.JFrame {
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText(" Cari Dokter...");
+        tfCari.setText("cari id dokter..");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);
@@ -202,11 +202,15 @@ public class ViewDokter extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        fc.loadDokter();
-        fc.readDokter();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            int keword = Integer.parseInt(tfCari.getText());
+            fc.CariDokter(keword); 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "isian harus berupa angka");
+        }        
+    }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
         // TODO add your handling code here:
@@ -255,7 +259,7 @@ public class ViewDokter extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnBack;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCari;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
