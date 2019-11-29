@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import medical.record.Model.Dokter;
 import medical.record.Model.Karyawan;
 import medical.record.Model.Pasien;
@@ -63,6 +64,7 @@ public class Service {
     public Service() {
         modelDokter = new DefaultTableModel();
         modelPasien = new DefaultTableModel();
+        modelPoliklinik = new DefaultTableModel();
         modelRekamMedis = new DefaultTableModel();
         conn = Conf.databaseConnected();
     }
@@ -150,13 +152,12 @@ public class Service {
                     new Object[]{
                         po.getKode_penyakit(),
                         po.getNamaPoliklinik(),
-                        po.getKode_spesialisasi(),
                         po.getNamaSpesialisasi(),
-                        po.getKode_penyakit(),
                         po.getNamaPenyakit()
                     }
             );
         }
+        System.out.println(modelPoliklinik);
     }
     
     public void readRekamMedis(){}
@@ -254,7 +255,7 @@ public class Service {
                 listPoliklinik = new ArrayList<>();
                 preparedStatement =  conn.prepareStatement(query);
                 neSet = preparedStatement.executeQuery();
-                
+
                 while(neSet.next()){
                     int kdPenyakit = neSet.getInt("kode_penyakit");
                     int kdSpesialisasi = neSet.getInt("kode_spesialisasi");
