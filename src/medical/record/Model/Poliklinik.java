@@ -27,6 +27,24 @@ public class Poliklinik extends Spesialisasi{
         this.namaPoliklinik = namaPoliklinik;
     }
 
+    public int getKode_poliklinik() {
+        return kode_poliklinik;
+    }
+
+    public void setKode_poliklinik(int kode_poliklinik) {
+        this.kode_poliklinik = kode_poliklinik;
+    }
+
+    public String getNamaPoliklinik() {
+        return namaPoliklinik;
+    }
+
+    public void setNamaPoliklinik(String namaPoliklinik) {
+        this.namaPoliklinik = namaPoliklinik;
+    }
+    
+    
+
     
     
 }

@@ -133,7 +133,7 @@ public class ViewPasien extends javax.swing.JFrame {
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText("cari id dokter..");
+        tfCari.setText("cari id pasien...");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);

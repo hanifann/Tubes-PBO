@@ -20,5 +20,23 @@ public class Penyakit {
         this.kode_penyakit = kode_penyakit;
         this.namaPenyakit = namaPenyakit;
     }
+
+    public int getKode_penyakit() {
+        return kode_penyakit;
+    }
+
+    public void setKode_penyakit(int kode_penyakit) {
+        this.kode_penyakit = kode_penyakit;
+    }
+
+    public String getNamaPenyakit() {
+        return namaPenyakit;
+    }
+
+    public void setNamaPenyakit(String namaPenyakit) {
+        this.namaPenyakit = namaPenyakit;
+    }
+    
+    
     
 }

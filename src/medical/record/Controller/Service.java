@@ -145,13 +145,18 @@ public class Service {
     
     public void readPoliklinik(){
         modelPoliklinik.setRowCount(0);
-//        for (poliklinik po : listPoliklinik) {
-//            modelPoliklinik.addRow(
-//                    new Object[]{
-//                        po.
-//                    }
-//            );
-//        }
+        for (Poliklinik po : listPoliklinik) {
+            modelPoliklinik.addRow(
+                    new Object[]{
+                        po.getKode_penyakit(),
+                        po.getNamaPoliklinik(),
+                        po.getKode_spesialisasi(),
+                        po.getNamaSpesialisasi(),
+                        po.getKode_penyakit(),
+                        po.getNamaPenyakit()
+                    }
+            );
+        }
     }
     
     public void readRekamMedis(){}
@@ -249,9 +254,27 @@ public class Service {
                 listPoliklinik = new ArrayList<Poliklinik>();
                 preparedStatement =  conn.prepareStatement(query);
                 neSet = preparedStatement.executeQuery();
-                while(neSet.next()){
                 
+                while(neSet.next()){
+                    int kdPenyakit = neSet.getInt("kode_penyakit");
+                    int kdSpesialisasi = neSet.getInt("kode_spesialisasi");
+                    int KdPoli = neSet.getInt("kode_poliklinik");
+                    String namaPenyakit = neSet.getString("nama_penyakit");
+                    String namaSpesialisasi = neSet.getString("nama_spesialisasi");
+                    String namaPoli = neSet.getString("nama_poliklinik");
+                    
+                    poliklinik = new Poliklinik(
+                            KdPoli,
+                            namaPoli,
+                            kdSpesialisasi,
+                            namaSpesialisasi,
+                            kdPenyakit,
+                            namaPenyakit);
+                    
+                    listPoliklinik.add(poliklinik);
                 }
+                neSet.close();
+                preparedStatement.close();
             } catch (Exception e) {
                 Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,e);     
             }
