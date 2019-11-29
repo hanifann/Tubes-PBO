@@ -102,10 +102,10 @@ public class Service {
     }
     
     public void setTablePoliklinik(){
-        modelPasien.addColumn("Kode Poli");
-        modelPasien.addColumn("Nama Poliklinik");
-        modelPasien.addColumn("Spesialis");
-        modelPasien.addColumn("Dokter");
+        modelPoliklinik.addColumn("Kode Poliklinik");
+        modelPoliklinik.addColumn("Nama Poliklinik");
+        modelPoliklinik.addColumn("Spesialis");
+        modelPoliklinik.addColumn("Penyakit");
     }
     
     public void readDokter(){
@@ -251,7 +251,7 @@ public class Service {
                         + "JOIN spesialisasi ON poliklinik.kode_spesialisasi = spesialisasi.kode_spesialisasi "
                         + "JOIN penyakit ON spesialisasi.kode_penyakit = penyakit.kode_penyakit "
                         + "ORDER BY poliklinik.kode_poliklinik";
-                listPoliklinik = new ArrayList<Poliklinik>();
+                listPoliklinik = new ArrayList<>();
                 preparedStatement =  conn.prepareStatement(query);
                 neSet = preparedStatement.executeQuery();
                 
