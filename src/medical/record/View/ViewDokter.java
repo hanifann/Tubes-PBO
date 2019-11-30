@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
@@ -26,22 +27,28 @@ public class ViewDokter extends javax.swing.JFrame {
     /**
      * Creates new form ViewDOkter
      */
-    
+    Connection conn;
+    Auth auth;
     Service fc = new Service();
-    String nama = "";
+    String nama;
+    int id;
     
     public ViewDokter() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
         tblDokter.setModel(fc.getModelDokter());
         fc.setTableDokter();
         fc.loadDokter();
         fc.readDokter();
     }
 
-    ViewDokter(String nama) {
+    public ViewDokter(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.nama = nama;
+        nama = session;
+        id = username;
     }
 
     /**

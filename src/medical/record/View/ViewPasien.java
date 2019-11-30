@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
@@ -28,21 +29,28 @@ public class ViewPasien extends javax.swing.JFrame {
      * Creates new form ViewDOkter
      */
     
+    Connection conn;
+    Auth auth;
     Service fc = new Service();
-    String nama = "";
+    int id;
+    String nama;
     
     public ViewPasien() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
         tblPasien.setModel(fc.getModelPasien());
         fc.setTablePasien();
         fc.loadPasien();
         fc.readPasien();
     }
 
-    ViewPasien(String nama) {
+    public ViewPasien(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.nama = nama;
+        nama = session;
+        id = username;
     }
     
     /**
@@ -210,7 +218,7 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard(nama);
+        ViewDashboard menu = new ViewDashboard(nama, id);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();

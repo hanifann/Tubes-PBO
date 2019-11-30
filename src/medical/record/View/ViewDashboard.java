@@ -5,8 +5,10 @@
  */
 package medical.record.View;
 
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
+import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
 import medical.record.Model.Karyawan;
@@ -22,24 +24,22 @@ public class ViewDashboard extends javax.swing.JFrame {
      */
     
     Auth auth = new Auth();
-    int namaSession;
+    int id;
     String nama = "";
+    Connection conn;
     
-    public ViewDashboard(Auth auth) {
-        initComponents();
-        this.setLocationRelativeTo(null);        
-        this.auth = auth;
-    }
-
     public ViewDashboard() {
         initComponents();
         this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
     }
+
 
     public ViewDashboard(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.auth = auth;
+        id = username;
         nama = session;
         labelNama.setText(nama);
     }
@@ -181,7 +181,7 @@ public class ViewDashboard extends javax.swing.JFrame {
 
     private void btnRekamMedisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRekamMedisMouseClicked
         // TODO add your handling code here:
-         ViewRekamMedis menu = new ViewRekamMedis(nama);
+         ViewRekamMedis menu = new ViewRekamMedis(nama, id);
          menu.setVisible(true);
          menu.setLocationRelativeTo(null);
          dispose();
@@ -189,7 +189,7 @@ public class ViewDashboard extends javax.swing.JFrame {
 
     private void btnPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPasienMouseClicked
         // TODO add your handling code here:
-         ViewPasien menu = new ViewPasien(nama);
+         ViewPasien menu = new ViewPasien(nama, id);
          menu.setVisible(true);
          menu.setLocationRelativeTo(null);
          dispose();
@@ -197,7 +197,7 @@ public class ViewDashboard extends javax.swing.JFrame {
 
     private void btnDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDokterMouseClicked
         // TODO add your handling code here:
-         ViewDokter menu = new ViewDokter(nama);
+         ViewDokter menu = new ViewDokter(nama, id);
          menu.setVisible(true);
          menu.setLocationRelativeTo(null);
          dispose();
@@ -205,7 +205,7 @@ public class ViewDashboard extends javax.swing.JFrame {
 
     private void btnPoliklinikMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPoliklinikMouseClicked
         // TODO add your handling code here:
-         ViewPoliklinik menu = new ViewPoliklinik(nama);
+         ViewPoliklinik menu = new ViewPoliklinik(nama, id);
          menu.setVisible(true);
          menu.setLocationRelativeTo(null);
          dispose();

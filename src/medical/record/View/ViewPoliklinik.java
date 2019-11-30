@@ -28,21 +28,28 @@ public class ViewPoliklinik extends javax.swing.JFrame {
      * Creates new form ViewDOkter
      */
     
+    Auth auth;
+    Connection conn;
     Service fc = new Service();
-    String nama = "";
+    String nama;
+    int id;
     
     public ViewPoliklinik() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
         tblPoli.setModel(fc.getModelPoliklinik());
         fc.setTablePoliklinik();
         fc.loadPoliklinik();
         fc.readPoliklinik();
     }
 
-    ViewPoliklinik(String nama) {
+    public ViewPoliklinik(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.nama = nama;
+        nama = session;
+        id = username;
     }
     
     private void cari(){
@@ -220,7 +227,7 @@ public class ViewPoliklinik extends javax.swing.JFrame {
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
 
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard(nama);
+        ViewDashboard menu = new ViewDashboard(nama, id);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();

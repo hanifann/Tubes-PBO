@@ -27,7 +27,7 @@ import medical.record.Model.Spesialisasi;
  *
  * @author Acer
  */
-public class ViewRekamMedis extends javax.swing.JFrame {
+public final class ViewRekamMedis extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewRekamMedis
@@ -37,35 +37,25 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     Auth auth = new Auth();
     Conf conf = new Conf();
     PreparedStatement sst;
-    String nama = "";
-        
-    public ViewRekamMedis(Auth auth) {
-        initComponents();
-        this.setLocationRelativeTo(null);        
-        this.auth = auth;
-    }
-    
-    public ViewRekamMedis(Karyawan auth){
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.auth = auth;
-        //labelNama.setText(auth.getNamaKaryawan());
-    }
+    int id;
+    String nama;
     
     public ViewRekamMedis() {
         initComponents();
         this.setLocationRelativeTo(null);
         function = new Service(conn);
         conn = Conf.databaseConnected();
+        auth = new Auth();
         loadSpesialisCB();
         loadPenyakitCB();
         loadPoliklinikCB();
     }
 
-    public ViewRekamMedis(String nama) {
+    public ViewRekamMedis(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.nama = nama;
+        id = username;
+        nama = session;    
     }
     
      public void loadSpesialisCB(){
@@ -436,11 +426,10 @@ public class ViewRekamMedis extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, nama);
-//        ViewDashboard menu = new ViewDashboard(nama);
-//        menu.setVisible(true);
-//        menu.setLocationRelativeTo(null);
-//        dispose();
+        ViewDashboard menu = new ViewDashboard(nama, id);
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void tfPemeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPemeriksaActionPerformed

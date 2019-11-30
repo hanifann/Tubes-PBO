@@ -164,6 +164,7 @@ public class ViewLogin extends javax.swing.JFrame {
             if(authentication.Login(username, password)){    
                 JOptionPane.showMessageDialog(this, "Login Berhasil");
                 dispose();
+                
                 ViewDashboard menu = new ViewDashboard(authentication.session(), username);
                 menu.setVisible(true);
                 menu.setLocationRelativeTo(null);
