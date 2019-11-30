@@ -349,6 +349,7 @@ public class Service {
       
       public void addRekamMedik(
               // masih ngeBUG
+              Connection conn,
               int idPasien,  
               int idDokter, 
               int kdSpesialisasi, 
@@ -363,21 +364,12 @@ public class Service {
               String Pengobatan){
           if(conn != null){
               try{
-              String query = "INSERT INTO medical_record("
-                      + "jenis_rekam_medis, " //1
-                      + "id_pasien, " //2
-                      + "id_dokter, " //3
-                      + "kode_spesialisasi, " //4
-                      + "kode_poliklinik, "  //5
-                      + "kode_penyakit, " //6
-                      + "ruang_perawatan, "  //7
-                      + "tgl_masuk, "  //8
-                      + "tgl_keluar,"  //9
-                      + "pemeriksaan, "  //11
-                      + "tindakan, "  //12
-                      + "pengobatan) "  //13
-                      + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+              String query = "INSERT INTO medical_record(jenis_rekam_medis,id_pasien, id_dokter, \n" +
+"                           kode_spesialisasi, kode_poliklinik, kode_penyakit, \n" +
+"                           ruang_perawatan, tgl_masuk, tgl_keluar, pemeriksaan, \n" +
+"                           tindakan, pengobatan) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
              preparedStatement = conn.prepareStatement(query);
+             
              preparedStatement.setString(1, jenisRM);
              preparedStatement.setInt(2, idPasien);
              preparedStatement.setInt(3, idDokter);
@@ -390,6 +382,8 @@ public class Service {
              preparedStatement.setString(10, Pemeriksaan);
              preparedStatement.setString(11, Tindakan);
              preparedStatement.setString(12, Pengobatan);
+                  System.out.println(preparedStatement);
+                  preparedStatement.executeUpdate();
                   System.out.println("berhasil oiy");
             }catch(SQLException e){
                 Logger.getLogger(ViewRekamMedis.class.getName()).log(Level.SEVERE,null,e);

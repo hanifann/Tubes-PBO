@@ -42,12 +42,18 @@ public class ViewLogin extends javax.swing.JFrame {
         }else{
             authentication = new Auth(conn, username, password);
             if(authentication.Login(username, password)){    
-                JOptionPane.showMessageDialog(this, "Login Berhasil");
                 dispose();
                 
-                ViewDashboard menu = new ViewDashboard(authentication.session(), username);
-                menu.setVisible(true);
-                menu.setLocationRelativeTo(null);
+                if(authentication.status() == 1){
+                    ViewAdmin min  = new ViewAdmin(authentication.session(), username);
+                    min.setVisible(true);
+                    min.setLocationRelativeTo(null);     
+                }else{
+                    ViewDashboard menu = new ViewDashboard(authentication.session(), username);
+                    menu.setVisible(true);
+                    menu.setLocationRelativeTo(null);
+                }
+                
             }else{
                 System.out.println(conn);
                 JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");

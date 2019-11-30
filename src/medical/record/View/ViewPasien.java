@@ -250,7 +250,10 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "test");
+        ViewDetailPasien pas = new ViewDetailPasien(id);
+        pas.setVisible(true);
+        pas.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_tblPasienMouseClicked
 
     private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed

@@ -20,6 +20,10 @@ public class ViewAdmin extends javax.swing.JFrame {
         initComponents();
     }
 
+    ViewAdmin(String session, int username) {
+        initComponents();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,16 +35,16 @@ public class ViewAdmin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnBack = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnPoliklinik = new javax.swing.JButton();
         btnPasien = new javax.swing.JButton();
         btnDokter = new javax.swing.JButton();
         btnPegawai = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JLabel();
+        uwaw = new javax.swing.JPanel();
         ListDokter = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -115,7 +119,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1440, 1024));
         setMinimumSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
 
@@ -124,75 +127,101 @@ public class ViewAdmin extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setMinimumSize(new java.awt.Dimension(1440, 1024));
         jPanel1.setPreferredSize(new java.awt.Dimension(1440, 1024));
+        jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(42, 147, 151));
 
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/arrow-back.png"))); // NOI18N
-        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnBackMouseClicked(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admin");
+        jLabel1.setText("Hello ADMIN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(btnBack)
-                .addGap(47, 47, 47)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(31, 31, 31))
         );
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 27.png"))); // NOI18N
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(0, 67, 291, 112);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 42.png"))); // NOI18N
+        jPanel1.add(jLabel5);
+        jLabel5.setBounds(1030, 820, 420, 210);
 
         jLabel4.setForeground(new java.awt.Color(0, 153, 153));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 41.png"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(0, 840, 127, 186);
 
+        btnPoliklinik.setBackground(new java.awt.Color(42, 147, 151));
+        btnPoliklinik.setForeground(new java.awt.Color(255, 255, 255));
         btnPoliklinik.setText("Poliklinik");
+        btnPoliklinik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPoliklinikActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPoliklinik);
+        btnPoliklinik.setBounds(630, 310, 140, 32);
 
+        btnPasien.setBackground(new java.awt.Color(42, 147, 151));
+        btnPasien.setForeground(new java.awt.Color(255, 255, 255));
         btnPasien.setText("Pasien");
         btnPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPasienActionPerformed(evt);
             }
         });
+        jPanel1.add(btnPasien);
+        btnPasien.setBounds(480, 310, 130, 32);
 
+        btnDokter.setBackground(new java.awt.Color(42, 147, 151));
+        btnDokter.setForeground(new java.awt.Color(255, 255, 255));
         btnDokter.setText("Dokter");
         btnDokter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDokterActionPerformed(evt);
             }
         });
+        jPanel1.add(btnDokter);
+        btnDokter.setBounds(330, 310, 130, 32);
 
+        btnPegawai.setBackground(new java.awt.Color(42, 147, 151));
+        btnPegawai.setForeground(new java.awt.Color(255, 255, 255));
         btnPegawai.setText("Pegawai");
         btnPegawai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPegawaiActionPerformed(evt);
             }
         });
+        jPanel1.add(btnPegawai);
+        btnPegawai.setBounds(180, 310, 130, 32);
 
-        jPanel3.setLayout(new java.awt.CardLayout());
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 45.png"))); // NOI18N
+        jPanel1.add(jLabel34);
+        jLabel34.setBounds(550, 30, 331, 201);
+
+        btnLogout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 57.png"))); // NOI18N
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(btnLogout);
+        btnLogout.setBounds(1170, 80, 220, 90);
+
+        uwaw.setLayout(new java.awt.CardLayout());
 
         ListDokter.setBackground(new java.awt.Color(255, 255, 255));
         ListDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -344,7 +373,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel3.add(ListDokter, "card2");
+        uwaw.add(ListDokter, "card2");
 
         ListPasien.setBackground(new java.awt.Color(255, 255, 255));
         ListPasien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -496,7 +525,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel3.add(ListPasien, "card2");
+        uwaw.add(ListPasien, "card2");
 
         ListPoliklinik.setBackground(new java.awt.Color(255, 255, 255));
         ListPoliklinik.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -648,7 +677,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel3.add(ListPoliklinik, "card2");
+        uwaw.add(ListPoliklinik, "card2");
 
         ListPegawai.setBackground(new java.awt.Color(255, 255, 255));
         ListPegawai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
@@ -715,6 +744,11 @@ public class ViewAdmin extends javax.swing.JFrame {
         });
 
         jButton10.setText("reset");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ListPegawaiLayout = new javax.swing.GroupLayout(ListPegawai);
         ListPegawai.setLayout(ListPegawaiLayout);
@@ -752,9 +786,9 @@ public class ViewAdmin extends javax.swing.JFrame {
                                 .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel26)
                     .addGroup(ListPegawaiLayout.createSequentialGroup()
-                        .addComponent(jButton9)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton10)))
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -790,7 +824,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel32)
                             .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(56, 56, 56)
+                        .addGap(34, 34, 34)
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton9)
                             .addComponent(jButton10)))
@@ -800,67 +834,10 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        jPanel3.add(ListPegawai, "card2");
+        uwaw.add(ListPegawai, "card2");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnPasien)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDokter)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPegawai)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPoliklinik)))
-                .addContainerGap(158, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(1005, 1005, 1005)
-                            .addComponent(jLabel3))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(893, 893, 893)
-                            .addComponent(jLabel5)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPoliklinik)
-                    .addComponent(btnPasien)
-                    .addComponent(btnDokter)
-                    .addComponent(btnPegawai))
-                .addGap(32, 32, 32)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addGap(612, 612, 612)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(50, 50, 50)
-                            .addComponent(jLabel4))
-                        .addComponent(jLabel5))
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        jPanel1.add(uwaw);
+        uwaw.setBounds(180, 370, 1116, 537);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -880,14 +857,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
-        dispose();
-    }//GEN-LAST:event_btnBackMouseClicked
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         
@@ -899,36 +868,36 @@ public class ViewAdmin extends javax.swing.JFrame {
 
     private void tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahActionPerformed
         // TODO add your handling code here:
-        adminPanel.removeAll();
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.removeAll();
+        uwaw.repaint();
+        uwaw.revalidate();
 
-        adminPanel.add(ListPoliklinik);
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.add(ListPoliklinik);
+        uwaw.repaint();
+        uwaw.revalidate();
     }//GEN-LAST:event_tambahActionPerformed
 
     private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
         // TODO add your handling code here:
-        adminPanel.removeAll();
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.removeAll();
+        uwaw.repaint();
+        uwaw.revalidate();
 
-        adminPanel.add(ListPasien);
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.add(ListPasien);
+        uwaw.repaint();
+        uwaw.revalidate();
         
     }//GEN-LAST:event_btnPasienActionPerformed
 
     private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
         // TODO add your handling code here:
-        adminPanel.removeAll();
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.removeAll();
+        uwaw.repaint();
+        uwaw.revalidate();
 
-        adminPanel.add(ListDokter);
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.add(ListDokter);
+        uwaw.repaint();
+        uwaw.revalidate();
     }//GEN-LAST:event_btnDokterActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -937,14 +906,37 @@ public class ViewAdmin extends javax.swing.JFrame {
 
     private void btnPegawaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPegawaiActionPerformed
         // TODO add your handling code here:
-        adminPanel.removeAll();
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.removeAll();
+        uwaw.repaint();
+        uwaw.revalidate();
 
-        adminPanel.add(ListPegawai);
-        adminPanel.repaint();
-        adminPanel.revalidate();
+        uwaw.add(ListPegawai);
+        uwaw.repaint();
+        uwaw.revalidate();
     }//GEN-LAST:event_btnPegawaiActionPerformed
+
+    private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
+        // TODO add your handling code here:
+        ViewLogin menu = new ViewLogin();
+        menu.setVisible(true);
+        menu.setLocationRelativeTo(null);
+        dispose();
+    }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void btnPoliklinikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPoliklinikActionPerformed
+        // TODO add your handling code here:
+        uwaw.removeAll();
+        uwaw.repaint();
+        uwaw.revalidate();
+
+        uwaw.add(ListPoliklinik);
+        uwaw.repaint();
+        uwaw.revalidate();
+    }//GEN-LAST:event_btnPoliklinikActionPerformed
 
     /**
      * @param args the command line arguments
@@ -972,6 +964,9 @@ public class ViewAdmin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -987,8 +982,8 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel ListPasien;
     private javax.swing.JPanel ListPegawai;
     private javax.swing.JPanel ListPoliklinik;
-    private javax.swing.JLabel btnBack;
     private javax.swing.JButton btnDokter;
+    private javax.swing.JLabel btnLogout;
     private javax.swing.JButton btnPasien;
     private javax.swing.JButton btnPegawai;
     private javax.swing.JButton btnPoliklinik;
@@ -1020,10 +1015,10 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1032,7 +1027,6 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1067,5 +1061,6 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JButton reset;
     private javax.swing.JButton tambah;
+    private javax.swing.JPanel uwaw;
     // End of variables declaration//GEN-END:variables
 }
