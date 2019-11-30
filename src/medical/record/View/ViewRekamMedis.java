@@ -46,16 +46,21 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         function = new Service(conn);
         conn = Conf.databaseConnected();
         auth = new Auth();
-        loadSpesialisCB();
-        loadPenyakitCB();
-        loadPoliklinikCB();
+        function = new Service(conn);
+
     }
 
     public ViewRekamMedis(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
         id = username;
-        nama = session;    
+        nama = session;  
+        function = new Service(conn);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
+        loadSpesialisCB();
+        loadPenyakitCB();
+        loadPoliklinikCB();
     }
     
      public void loadSpesialisCB(){
@@ -63,7 +68,6 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             String query = "SELECT * FROM spesialisasi";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet neSet = ps.executeQuery();
-            
             while(neSet.next()){
                 Object[] obj = new Object[2];
                 obj[0] = neSet.getString(1);
@@ -105,7 +109,6 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             String query = "SELECT * FROM poliklinik";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet neSet = ps.executeQuery();
-            
             while(neSet.next()){
                 Object[] obj = new Object[2];
                 obj[0] = neSet.getString(1);
@@ -315,6 +318,11 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         jPanel1.add(jLabel17);
         jLabel17.setBounds(380, 230, 77, 19);
 
+        cbKdPoliklinik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKdPoliklinikActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbKdPoliklinik);
         cbKdPoliklinik.setBounds(470, 480, 190, 26);
 
@@ -396,6 +404,13 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         jPanel1.add(cbKdSpesialis);
         cbKdSpesialis.setBounds(470, 390, 190, 26);
 
+        cbKdPenyakit.setSelectedIndex(cbKdPenyakit.getSelectedIndex());
+        cbKdPenyakit.setSelectedItem(cbKdPenyakit);
+        cbKdPenyakit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbKdPenyakitActionPerformed(evt);
+            }
+        });
         jPanel1.add(cbKdPenyakit);
         cbKdPenyakit.setBounds(470, 440, 190, 26);
         jPanel1.add(tfIdPasien);
@@ -509,7 +524,18 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
 
     private void cbKdSpesialisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdSpesialisActionPerformed
         // TODO add your handling code here:
+        loadSpesialisCB();
     }//GEN-LAST:event_cbKdSpesialisActionPerformed
+
+    private void cbKdPenyakitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdPenyakitActionPerformed
+        // TODO add your handling code here:
+        loadPenyakitCB();
+    }//GEN-LAST:event_cbKdPenyakitActionPerformed
+
+    private void cbKdPoliklinikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdPoliklinikActionPerformed
+        // TODO add your handling code here:
+        loadPenyakitCB();
+    }//GEN-LAST:event_cbKdPoliklinikActionPerformed
 
     /**
      * @param args the command line arguments

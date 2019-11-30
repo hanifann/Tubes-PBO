@@ -284,6 +284,18 @@ public class Service {
         }
     }
     
+    public void loadKaryawan(){
+        if(conn != null){
+            
+        }else{
+            System.out.println("Disconnected");
+        }
+    }
+    
+    public void loadRekamMedis(){
+    
+    }
+    
     public void CariDokter(int keyword){
         modelDokter.setRowCount(0);
         loadDokter();
@@ -292,6 +304,22 @@ public class Service {
                 readDokter();
             }
         }
+    }
+    
+    public void cariPasien(int keyword){
+        modelPasien.setRowCount(0);
+        loadPasien();
+        for (Pasien val : listPasien) {
+            if(val.getId_pasien() == keyword){
+                readPasien();
+            }
+        }
+    }
+    
+    public void cariKaryawan(){}
+    
+    public void cariPoliklinik(){
+        
     }
     
       public void insertDokter(String nip, String nama, String spesialis, String poliklinik, String tglL, String gender,String tgl){
@@ -320,6 +348,7 @@ public class Service {
     }
       
       public void addRekamMedik(
+              // masih ngeBUG
               int idPasien,  
               int idDokter, 
               int kdSpesialisasi, 

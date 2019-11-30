@@ -40,12 +40,10 @@ public class ViewDashboard extends javax.swing.JFrame {
     public ViewDashboard(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
         id = username;
         nama = session;
-        labelNama.setText(nama);
-    }
-
-    ViewDashboard(String nama) {
         labelNama.setText(nama);
     }
     

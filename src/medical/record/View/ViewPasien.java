@@ -49,8 +49,14 @@ public class ViewPasien extends javax.swing.JFrame {
     public ViewPasien(String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        auth = new Auth();
+        tblPasien.setModel(fc.getModelPasien());
         nama = session;
         id = username;
+        fc.setTablePasien();
+        fc.loadPasien();
+        fc.readPasien();
     }
     
     /**
