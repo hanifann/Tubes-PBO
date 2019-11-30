@@ -37,6 +37,7 @@ public class ViewRekamMedis extends javax.swing.JFrame {
     Auth auth = new Auth();
     Conf conf = new Conf();
     PreparedStatement sst;
+    String nama = "";
         
     public ViewRekamMedis(Auth auth) {
         initComponents();
@@ -59,6 +60,12 @@ public class ViewRekamMedis extends javax.swing.JFrame {
         loadSpesialisCB();
         loadPenyakitCB();
         loadPoliklinikCB();
+    }
+
+    public ViewRekamMedis(String nama) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.nama = nama;
     }
     
      public void loadSpesialisCB(){
@@ -429,10 +436,11 @@ public class ViewRekamMedis extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
-        dispose();
+        JOptionPane.showMessageDialog(this, nama);
+//        ViewDashboard menu = new ViewDashboard(nama);
+//        menu.setVisible(true);
+//        menu.setLocationRelativeTo(null);
+//        dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void tfPemeriksaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPemeriksaActionPerformed

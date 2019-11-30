@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
@@ -28,6 +29,7 @@ public class ViewPoliklinik extends javax.swing.JFrame {
      */
     
     Service fc = new Service();
+    String nama = "";
     
     public ViewPoliklinik() {
         initComponents();
@@ -35,6 +37,12 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         fc.setTablePoliklinik();
         fc.loadPoliklinik();
         fc.readPoliklinik();
+    }
+
+    ViewPoliklinik(String nama) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.nama = nama;
     }
     
     private void cari(){
@@ -210,8 +218,9 @@ public class ViewPoliklinik extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
+        ViewDashboard menu = new ViewDashboard(nama);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();

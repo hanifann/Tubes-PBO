@@ -28,6 +28,7 @@ public class ViewDokter extends javax.swing.JFrame {
      */
     
     Service fc = new Service();
+    String nama = "";
     
     public ViewDokter() {
         initComponents();
@@ -35,6 +36,12 @@ public class ViewDokter extends javax.swing.JFrame {
         fc.setTableDokter();
         fc.loadDokter();
         fc.readDokter();
+    }
+
+    ViewDokter(String nama) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.nama = nama;
     }
 
     /**
@@ -202,7 +209,7 @@ public class ViewDokter extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
+        ViewDashboard menu = new ViewDashboard(nama);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();

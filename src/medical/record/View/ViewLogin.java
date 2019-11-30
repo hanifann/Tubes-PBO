@@ -9,6 +9,7 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
+import medical.record.Model.Dokter;
 import medical.record.Model.Karyawan;
 
 /**
@@ -101,13 +102,13 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password");
         btSubmit.add(jLabel8);
-        jLabel8.setBounds(470, 560, 320, 22);
+        jLabel8.setBounds(470, 560, 320, 24);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nomor Induk Pegawai (NIP)");
         btSubmit.add(jLabel7);
-        jLabel7.setBounds(470, 480, 320, 22);
+        jLabel7.setBounds(470, 480, 320, 24);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Login.png"))); // NOI18N
         btSubmit.add(jLabel6);
@@ -160,15 +161,14 @@ public class ViewLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "NIP dan password tidak boleh kosong");
         }else{
             authentication = new Auth(conn, username, password);
-            Karyawan karyawan = authentication.session();
             if(authentication.Login(username, password)){    
                 JOptionPane.showMessageDialog(this, "Login Berhasil");
                 dispose();
-                
-                ViewDashboard menu = new ViewDashboard(karyawan);
+                ViewDashboard menu = new ViewDashboard(authentication.session(), username);
                 menu.setVisible(true);
                 menu.setLocationRelativeTo(null);
             }else{
+                System.out.println(conn);
                 JOptionPane.showMessageDialog(this, "Username atau Password tidak ditemukan ");
             }
             

@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 //import javafx.application.ConditionalFeature;
 import javax.swing.JOptionPane;
+import medical.record.Model.Dokter;
 import medical.record.Model.Karyawan;
 import medical.record.View.ViewLogin;
 
@@ -27,6 +28,7 @@ public class Auth {
     Connection conn;
     private int id;
     private String password;
+    public String nama;
 
     public int getId() {
         return id;
@@ -66,14 +68,32 @@ public class Auth {
     public boolean Login(int id, String pass){
         boolean status = false;
         if(conn != null){
+            String uname= "";
+            String pas = "";
+            String uwaw = "";
+            
+            int cekID = id/1000;
+            
+            if(cekID == 1){
+                uname = "id_karyawan";
+                pas = "password_karyawan";
+                uwaw = "nama_karyawan";
+            }else if(cekID == 2){
+                uname = "id_dokter";
+                pas = "password_dokter";
+                uwaw = "nama_dokter";                
+            }            
+            
             try{
-                String query = "SELECT * FROM karyawan WHERE id_karyawan = ? AND password = ?";           
+                String query = "SELECT karyawan.id_karyawan, karyawan.password_karyawan, karyawan.nama_karyawan,"
+                        + " dokter.id_dokter, dokter.password_dokter, dokter.nama_dokter "
+                        + "FROM karyawan,dokter WHERE "+ uname +" = ? AND "+ pas +" = ?";           
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setInt(1, id);
                 ps.setString(2 , pass);
                 ResultSet rs = ps.executeQuery();
                 if(rs.next()){
-                    String nama = rs.getString("nama_karyawan");
+                    nama = rs.getString(uwaw);
                     status = true;
                 }
             }catch(SQLException e){
@@ -101,28 +121,11 @@ public class Auth {
         return cekTrue;
     }  
     
-     public Karyawan session(){
-         Karyawan karyawan = null;
-         if(conn != null){
-             try{
-                String query = "SELECT * FROM karyawan WHERE id_karyawan = ? AND password = ?";           
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setInt(1, id);
-                ps.setString(2 , password);
-                ResultSet rs = ps.executeQuery();
-                if(rs.next()){
-                    karyawan = new Karyawan(
-                            rs.getInt("id_karyawan"),
-                            rs.getString("nama_karyawan"),
-                            rs.getString("jns_kelamin"),
-                            rs.getString("tgl_lahir"),
-                            rs.getString("tgl_mulai_bekerja")
-                    );                    
-                }
-             }catch(SQLException ex){
-                Logger.getLogger(ViewLogin.class.getName()).log(Level.SEVERE,null,ex);
-             }
-         }
-         return karyawan;
+     public String session(){
+         return nama;
      }
+
+    public String getNamaKaryawan() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

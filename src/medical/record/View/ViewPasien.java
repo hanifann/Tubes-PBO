@@ -29,6 +29,7 @@ public class ViewPasien extends javax.swing.JFrame {
      */
     
     Service fc = new Service();
+    String nama = "";
     
     public ViewPasien() {
         initComponents();
@@ -38,6 +39,12 @@ public class ViewPasien extends javax.swing.JFrame {
         fc.readPasien();
     }
 
+    ViewPasien(String nama) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        this.nama = nama;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -203,7 +210,7 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
+        ViewDashboard menu = new ViewDashboard(nama);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();
