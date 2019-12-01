@@ -7,10 +7,18 @@ package medical.record.View;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
+import medical.record.Model.Pasien;
 
 
 
@@ -18,13 +26,13 @@ import medical.record.Controller.Service;
  *
  * @author Acer
  */
-public class ViewAdmin extends javax.swing.JFrame {
+public final class ViewAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewAdmin
      */
     
-    Connection conn;
+    Connection conn = Conf.databaseConnected();
     Service function;
     Auth auth = new Auth();
     Conf conf = new Conf();
@@ -40,11 +48,13 @@ public class ViewAdmin extends javax.swing.JFrame {
         initComponents();
         nama = session;
         id = username;
-        function = new Service();
-        
+        function = new Service(conn);        
         modelDokter = function.getModelDokter();
         modelPasien = function.getModelPasien();
         modelKaryawan = function.getModelKaryawan();
+        
+        loadSpesialisCB();
+        loadPoliklinikCB();
         
         tblPegawai.setModel(modelKaryawan);
         setKaryawan();
@@ -91,6 +101,55 @@ public class ViewAdmin extends javax.swing.JFrame {
         modelPasien.addColumn("Telepon");
         modelPasien.addColumn("Pekerjaan");
     }
+    
+    private void reset (){
+        tfNamaKaryawan.setText("");
+        tfGenderKaryawan.setSelectedIndex(0);
+        tfPassKaryawan.setText("");
+        cbStatus.setSelectedIndex(0);
+        dcLahirKaryawan.setDate(null);
+        dcMulaiKerjaKaryawan.setDate(null);
+    }
+    
+     public void loadSpesialisCB(){
+        try {
+            String query = "SELECT * FROM spesialisasi";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet neSet = ps.executeQuery();
+            while(neSet.next()){
+                Object[] obj = new Object[2];
+                obj[0] = neSet.getString(1);
+                obj[1] = neSet.getString(2);
+                cbKdSpesialis1.addItem((String) obj[0] +" - "+ (String) obj[1]);
+            }
+            
+            neSet.close(); 
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+     
+      public void loadPoliklinikCB(){
+        try {
+            String query = "SELECT * FROM poliklinik";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet neSet = ps.executeQuery();
+            while(neSet.next()){
+                Object[] obj = new Object[2];
+                obj[0] = neSet.getString(1);
+                obj[1] = neSet.getString(2);
+                cbKdPoliklinik.addItem((String) obj[0] +" - "+ (String) obj[1]);
+            }
+            
+            neSet.close(); 
+            ps.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
    
 
     /**
@@ -118,7 +177,6 @@ public class ViewAdmin extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
         tfNamaKaryawan = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        tfGenderKaryawan = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -126,20 +184,18 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnTambahKaryawan = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
         cbStatus = new javax.swing.JComboBox<>();
-        tfAlamatKaryawan1 = new javax.swing.JTextField();
+        tfPassKaryawan = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dcLahirKaryawan = new com.toedter.calendar.JDateChooser();
+        dcMulaiKerjaKaryawan = new com.toedter.calendar.JDateChooser();
+        tfGenderKaryawan = new javax.swing.JComboBox<>();
         ListDokter = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         tfNamaDokter = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        tfGenderDokter = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        tfLahirDokter = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        tfMulaiKerjaDokter = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         tfTeleponDokter = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -147,16 +203,21 @@ public class ViewAdmin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDokter = new javax.swing.JTable();
         btnTambahDokter = new javax.swing.JButton();
-        tfPass = new javax.swing.JTextField();
+        tfPassDokter = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
+        dcLahirDokter = new com.toedter.calendar.JDateChooser();
+        dcKerjaDokter = new com.toedter.calendar.JDateChooser();
+        tfGenderDokter = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        cbKdSpesialis1 = new javax.swing.JComboBox<>();
+        cbKdPoliklinik = new javax.swing.JComboBox<>();
         ListPasien = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         tfNamaPasien = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        tfGenderPasien = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        tfLahirPasien = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         tfUmurPasien = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -168,6 +229,8 @@ public class ViewAdmin extends javax.swing.JFrame {
         btnTambahPasien = new javax.swing.JButton();
         tfPekerjaanPasien = new javax.swing.JTextField();
         tfPekerjaan = new javax.swing.JLabel();
+        tfGenderPasien = new javax.swing.JComboBox<>();
+        dcLahirPasien = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1440, 1024));
@@ -328,15 +391,17 @@ public class ViewAdmin extends javax.swing.JFrame {
 
         cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "karyawan", "admin" }));
 
-        tfAlamatKaryawan1.addActionListener(new java.awt.event.ActionListener() {
+        tfPassKaryawan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfAlamatKaryawan1ActionPerformed(evt);
+                tfPassKaryawanActionPerformed(evt);
             }
         });
 
         jLabel33.setBackground(new java.awt.Color(255, 255, 255));
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("password");
+
+        tfGenderKaryawan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
 
         javax.swing.GroupLayout ListPegawaiLayout = new javax.swing.GroupLayout(ListPegawai);
         ListPegawai.setLayout(ListPegawaiLayout);
@@ -352,10 +417,10 @@ public class ViewAdmin extends javax.swing.JFrame {
                                 .addComponent(jLabel28)
                                 .addComponent(jLabel27))
                             .addGap(49, 49, 49)
-                            .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfNamaKaryawan, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                                .addComponent(tfGenderKaryawan)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfNamaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dcLahirKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfGenderKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(ListPegawaiLayout.createSequentialGroup()
                             .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListPegawaiLayout.createSequentialGroup()
@@ -366,8 +431,8 @@ public class ViewAdmin extends javax.swing.JFrame {
                                     .addGap(90, 90, 90)))
                             .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(tfAlamatKaryawan1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(tfPassKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dcMulaiKerjaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel26)
                     .addComponent(btnTambahKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33))
@@ -386,26 +451,26 @@ public class ViewAdmin extends javax.swing.JFrame {
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27)
                             .addComponent(tfNamaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
+                        .addGap(15, 15, 15)
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfGenderKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28))
+                            .addComponent(jLabel28)
+                            .addComponent(tfGenderKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel29)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dcLahirKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dcMulaiKerjaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel35)
-                            .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel35))
                         .addGap(18, 18, 18)
                         .addGroup(ListPegawaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel33)
-                            .addComponent(tfAlamatKaryawan1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfPassKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28)
                         .addComponent(btnTambahKaryawan))
                     .addGroup(ListPegawaiLayout.createSequentialGroup()
@@ -419,34 +484,55 @@ public class ViewAdmin extends javax.swing.JFrame {
         ListDokter.setBackground(new java.awt.Color(255, 255, 255));
         ListDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
         ListDokter.setForeground(new java.awt.Color(0, 0, 0));
+        ListDokter.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Tambah Data Dokter");
+        ListDokter.add(jLabel2);
+        jLabel2.setBounds(48, 54, 177, 24);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("nama");
+        ListDokter.add(jLabel6);
+        jLabel6.setBounds(48, 117, 32, 16);
+        ListDokter.add(tfNamaDokter);
+        tfNamaDokter.setBounds(174, 113, 311, 24);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("gender");
+        ListDokter.add(jLabel7);
+        jLabel7.setBounds(48, 157, 40, 16);
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tanggal Lahir");
+        ListDokter.add(jLabel8);
+        jLabel8.setBounds(48, 201, 77, 16);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("tanggal mulai kerja");
+        jLabel9.setText("Kode Spesialisasi");
+        ListDokter.add(jLabel9);
+        jLabel9.setBounds(50, 320, 108, 16);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("no telepon");
+        ListDokter.add(jLabel10);
+        jLabel10.setBounds(50, 360, 59, 16);
+        ListDokter.add(tfTeleponDokter);
+        tfTeleponDokter.setBounds(170, 350, 311, 24);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("alamat");
+        ListDokter.add(jLabel11);
+        jLabel11.setBounds(50, 380, 39, 16);
+        ListDokter.add(tfAlamatDokter);
+        tfAlamatDokter.setBounds(170, 380, 311, 24);
 
         tblDokter.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -476,103 +562,51 @@ public class ViewAdmin extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDokter);
 
+        ListDokter.add(jScrollPane1);
+        jScrollPane1.setBounds(543, 31, 576, 484);
+
         btnTambahDokter.setText("tambah");
         btnTambahDokter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTambahDokterActionPerformed(evt);
             }
         });
+        ListDokter.add(btnTambahDokter);
+        btnTambahDokter.setBounds(50, 470, 143, 32);
+        ListDokter.add(tfPassDokter);
+        tfPassDokter.setBounds(170, 410, 311, 24);
 
         jLabel19.setBackground(new java.awt.Color(255, 255, 255));
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("password");
+        ListDokter.add(jLabel19);
+        jLabel19.setBounds(50, 410, 57, 16);
+        ListDokter.add(dcLahirDokter);
+        dcLahirDokter.setBounds(174, 201, 182, 29);
+        ListDokter.add(dcKerjaDokter);
+        dcKerjaDokter.setBounds(174, 236, 182, 29);
 
-        javax.swing.GroupLayout ListDokterLayout = new javax.swing.GroupLayout(ListDokter);
-        ListDokter.setLayout(ListDokterLayout);
-        ListDokterLayout.setHorizontalGroup(
-            ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ListDokterLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(ListDokterLayout.createSequentialGroup()
-                                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addGap(49, 49, 49)
-                                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNamaDokter)
-                                    .addComponent(tfGenderDokter)
-                                    .addComponent(tfLahirDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(ListDokterLayout.createSequentialGroup()
-                                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel19))
-                                .addGap(69, 69, 69)
-                                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfAlamatDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(ListDokterLayout.createSequentialGroup()
-                            .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListDokterLayout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addGap(18, 18, 18))
-                                .addGroup(ListDokterLayout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addGap(67, 67, 67)))
-                            .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tfMulaiKerjaDokter)
-                                .addComponent(tfTeleponDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel2)
-                    .addComponent(btnTambahDokter, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
-        ListDokterLayout.setVerticalGroup(
-            ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ListDokterLayout.createSequentialGroup()
-                .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ListDokterLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel2)
-                        .addGap(35, 35, 35)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(tfNamaDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfGenderDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(tfLahirDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(tfMulaiKerjaDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(tfTeleponDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(tfAlamatDokter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(ListDokterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(tfPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addComponent(btnTambahDokter))
-                    .addGroup(ListDokterLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
+        tfGenderDokter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
+        ListDokter.add(tfGenderDokter);
+        tfGenderDokter.setBounds(174, 157, 40, 26);
+
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("tanggal mulai kerja");
+        ListDokter.add(jLabel20);
+        jLabel20.setBounds(48, 236, 108, 16);
+
+        jLabel21.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Kode Poliklinik");
+        ListDokter.add(jLabel21);
+        jLabel21.setBounds(50, 290, 83, 16);
+
+        ListDokter.add(cbKdSpesialis1);
+        cbKdSpesialis1.setBounds(170, 310, 190, 26);
+
+        ListDokter.add(cbKdPoliklinik);
+        cbKdPoliklinik.setBounds(170, 280, 190, 26);
 
         uwaw.add(ListDokter, "card2");
 
@@ -647,6 +681,8 @@ public class ViewAdmin extends javax.swing.JFrame {
         tfPekerjaan.setForeground(new java.awt.Color(0, 0, 0));
         tfPekerjaan.setText("Pekerjaan");
 
+        tfGenderPasien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "F", "M" }));
+
         javax.swing.GroupLayout ListPasienLayout = new javax.swing.GroupLayout(ListPasien);
         ListPasien.setLayout(ListPasienLayout);
         ListPasienLayout.setHorizontalGroup(
@@ -655,21 +691,16 @@ public class ViewAdmin extends javax.swing.JFrame {
                 .addGap(47, 47, 47)
                 .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(ListPasienLayout.createSequentialGroup()
-                                .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel13))
-                                .addGap(49, 49, 49)
-                                .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tfNamaPasien)
-                                    .addComponent(tfGenderPasien)
-                                    .addComponent(tfLahirPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(ListPasienLayout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(87, 87, 87)
-                                .addComponent(tfAlamatPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ListPasienLayout.createSequentialGroup()
+                            .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15)
+                                .addComponent(jLabel14)
+                                .addComponent(jLabel13))
+                            .addGap(49, 49, 49)
+                            .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tfNamaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfGenderPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dcLahirPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(ListPasienLayout.createSequentialGroup()
                             .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(ListPasienLayout.createSequentialGroup()
@@ -686,10 +717,14 @@ public class ViewAdmin extends javax.swing.JFrame {
                     .addGroup(ListPasienLayout.createSequentialGroup()
                         .addComponent(tfPekerjaan)
                         .addGap(67, 67, 67)
-                        .addComponent(tfPekerjaanPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40)
+                        .addComponent(tfPekerjaanPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ListPasienLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(87, 87, 87)
+                        .addComponent(tfAlamatPasien, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         ListPasienLayout.setVerticalGroup(
             ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -702,15 +737,18 @@ public class ViewAdmin extends javax.swing.JFrame {
                         .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
                             .addComponent(tfNamaPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
+                        .addGap(15, 15, 15)
                         .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfGenderPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
+                            .addComponent(jLabel14)
+                            .addComponent(tfGenderPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(tfLahirPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ListPasienLayout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(22, 22, 22))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ListPasienLayout.createSequentialGroup()
+                                .addComponent(dcLahirPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
                         .addGroup(ListPasienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tfUmurPasien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16))
@@ -731,7 +769,7 @@ public class ViewAdmin extends javax.swing.JFrame {
                     .addGroup(ListPasienLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         uwaw.add(ListPasien, "card2");
@@ -762,12 +800,66 @@ public class ViewAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         // nama , gender, tanggal lahir, tanggal mulai kerja, no telepon, alamat, pass
         
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String nama = tfNamaDokter.getText();
+        String gender = tfGenderDokter.getSelectedItem().toString();
+        String tglLahir = dateformat.format(dcLahirDokter.getDate());
+        String mulaiKerja = dateformat.format(dcKerjaDokter.getDate());
+        String telepon = tfTeleponDokter.getText();
+        String alamat = tfAlamatDokter.getText();
+        String pass = auth.MD5(tfPassDokter.getText());
+        
+        tfNamaDokter.setText("");
+        tfGenderDokter.setSelectedIndex(0);
+        dcLahirDokter.setDate(null);
+        dcKerjaDokter.setDate(null);
+        tfTeleponDokter.setText("");
+        tfAlamatDokter.setText("");
+        tfPassDokter.setText("");
+        
+        
+        
     }//GEN-LAST:event_btnTambahDokterActionPerformed
 
     private void btnTambahPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahPasienActionPerformed
         // TODO add your handling code here:
         //nama, gender, tanggal lahir, umur , notelp, pekerjaan, alamat
         
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String nama = tfNamaPasien.getText();
+        String gender = tfGenderPasien.getSelectedItem().toString();
+        String tglLahir = dateformat.format(dcLahirPasien.getDate());
+        int umur = Integer.parseInt(tfUmurPasien.getText());
+        String telp = tfTeleponPasien.getText();
+        String pekerjaan = tfPekerjaanPasien.getText();
+        String alamat = tfAlamatPasien.getText();
+        
+        function.addPasien(nama, gender, tglLahir, telp, pekerjaan, alamat, umur);
+        function.loadPasien();
+        JOptionPane.showMessageDialog(this, "berhasil di tambahkan");
+        tfNamaPasien.setText("");
+        tfGenderPasien.setSelectedIndex(0);
+        dcLahirPasien.setDate(null);
+        tfUmurPasien.setText("");
+        tfTeleponPasien.setText("");
+        tfPekerjaanPasien.setText("");
+        tfAlamatPasien.setText("");
+        
+        ArrayList<Pasien> lol = function.sien();
+        modelPasien.setRowCount(0);
+        for (Pasien va: lol){
+            modelPasien.addRow(
+                  new Object[]{
+                       va.getId_pasien(),
+                       va.getNamaPasien(),
+                       va.getGenderPasien(),
+                       va.getUmur(),
+                       va.getPekerjaanPasien()
+                  }
+            );
+        }
     }//GEN-LAST:event_btnTambahPasienActionPerformed
 
     private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasienActionPerformed
@@ -812,14 +904,32 @@ public class ViewAdmin extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLogoutMouseClicked
 
-    private void tfAlamatKaryawan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAlamatKaryawan1ActionPerformed
+    private void tfPassKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPassKaryawanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfAlamatKaryawan1ActionPerformed
+    }//GEN-LAST:event_tfPassKaryawanActionPerformed
 
     private void btnTambahKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahKaryawanActionPerformed
         // TODO add your handling code here:
         // nama, gender, tanggal lahir, tanggal mulai kerja, no telpon, alamat status, pass
-
+        
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        
+        String nama = tfNamaKaryawan.getText();
+        String gender = tfGenderKaryawan.getSelectedItem().toString();
+        String tglLahir = dateformat.format(dcLahirKaryawan.getDate());
+        String mulaiKerja = dateformat.format(dcMulaiKerjaKaryawan.getDate());
+        int status = 0;
+        if(cbStatus.getSelectedItem().toString().equalsIgnoreCase("admin")){
+            status = 1;
+        }
+        String pass = auth.MD5(tfPassKaryawan.getText());
+        
+        function.addKaryawan(nama, gender, tglLahir, mulaiKerja, pass, status);
+        function.loadKaryawan();
+        JOptionPane.showMessageDialog(this, "berhasil di tambahkan");
+        reset();
+        function.readKaryawan();
+        
     }//GEN-LAST:event_btnTambahKaryawanActionPerformed
 
     /**
@@ -872,9 +982,14 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnTambahDokter;
     private javax.swing.JButton btnTambahKaryawan;
     private javax.swing.JButton btnTambahPasien;
+    private javax.swing.JComboBox<String> cbKdPoliklinik;
+    private javax.swing.JComboBox<String> cbKdSpesialis1;
     private javax.swing.JComboBox<String> cbStatus;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser dcKerjaDokter;
+    private com.toedter.calendar.JDateChooser dcLahirDokter;
+    private com.toedter.calendar.JDateChooser dcLahirKaryawan;
+    private com.toedter.calendar.JDateChooser dcLahirPasien;
+    private com.toedter.calendar.JDateChooser dcMulaiKerjaKaryawan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -887,6 +1002,8 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -910,18 +1027,15 @@ public class ViewAdmin extends javax.swing.JFrame {
     private javax.swing.JTable tblPasien;
     private javax.swing.JTable tblPegawai;
     private javax.swing.JTextField tfAlamatDokter;
-    private javax.swing.JTextField tfAlamatKaryawan1;
     private javax.swing.JTextField tfAlamatPasien;
-    private javax.swing.JTextField tfGenderDokter;
-    private javax.swing.JTextField tfGenderKaryawan;
-    private javax.swing.JTextField tfGenderPasien;
-    private javax.swing.JTextField tfLahirDokter;
-    private javax.swing.JTextField tfLahirPasien;
-    private javax.swing.JTextField tfMulaiKerjaDokter;
+    private javax.swing.JComboBox<String> tfGenderDokter;
+    private javax.swing.JComboBox<String> tfGenderKaryawan;
+    private javax.swing.JComboBox<String> tfGenderPasien;
     private javax.swing.JTextField tfNamaDokter;
     private javax.swing.JTextField tfNamaKaryawan;
     private javax.swing.JTextField tfNamaPasien;
-    private javax.swing.JTextField tfPass;
+    private javax.swing.JTextField tfPassDokter;
+    private javax.swing.JTextField tfPassKaryawan;
     private javax.swing.JLabel tfPekerjaan;
     private javax.swing.JTextField tfPekerjaanPasien;
     private javax.swing.JTextField tfTeleponDokter;

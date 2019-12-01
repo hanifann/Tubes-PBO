@@ -138,7 +138,6 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
                 obj[1] = neSet.getString(2);
                 cbKdPenyakit.addItem((String) obj[0] +" - "+ (String) obj[1]);
             }
-            
             neSet.close(); 
             ps.close();
             
@@ -476,12 +475,10 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
 
     private void cbKdPenyakitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdPenyakitActionPerformed
         // TODO add your handling code here:
-        loadPenyakitCB();
     }//GEN-LAST:event_cbKdPenyakitActionPerformed
 
     private void cbIdDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbIdDokterActionPerformed
         // TODO add your handling code here:
-        loadSpesialisCB();
     }//GEN-LAST:event_cbIdDokterActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
@@ -553,7 +550,6 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
 
     private void cbKdPoliklinikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdPoliklinikActionPerformed
         // TODO add your handling code here:
-        loadPenyakitCB();
     }//GEN-LAST:event_cbKdPoliklinikActionPerformed
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
