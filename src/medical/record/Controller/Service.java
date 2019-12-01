@@ -34,7 +34,7 @@ import medical.record.View.ViewRekamMedis;
 public class Service {
 
     Connection conn;    
-    DefaultTableModel modelDokter, modelPasien, modelRekamMedis, modelPoliklinik;
+    DefaultTableModel modelDokter, modelPasien, modelRekamMedis, modelPoliklinik, modelKaryawan;
     PreparedStatement preparedStatement;
     ResultSet neSet;
     
@@ -66,6 +66,7 @@ public class Service {
         modelPasien = new DefaultTableModel();
         modelPoliklinik = new DefaultTableModel();
         modelRekamMedis = new DefaultTableModel();
+        modelKaryawan = new DefaultTableModel();
         conn = Conf.databaseConnected();
     }
     
@@ -83,6 +84,10 @@ public class Service {
     
     public DefaultTableModel getModelRM() {
         return modelRekamMedis;
+    }
+    
+    public DefaultTableModel getModelKaryawan(){
+        return modelKaryawan;
     }
     
     public void setTableDokter(){
@@ -143,7 +148,21 @@ public class Service {
         }
     }
     
-    public void readKaryawan(){}
+    public void readKaryawan(){
+        modelKaryawan.setRowCount(0);
+        for (Karyawan uwu : listKaryawan) {
+            modelKaryawan.addRow(
+                    new Object[]{
+                        uwu.getId_karyawan(),
+                        uwu.getNamaKaryawan(),
+                        uwu.getGenderKAryawan(),
+                        uwu.getTglLahir(),
+                        uwu.getTglMulaiKerja(),
+                        uwu.getStatus(),
+                    }
+            );
+        }
+    }
     
     public void readPoliklinik(){
         modelPoliklinik.setRowCount(0);
@@ -286,7 +305,35 @@ public class Service {
     
     public void loadKaryawan(){
         if(conn != null){
-            
+            try{
+                String query = "SELECT * FROM karyawan";
+                listKaryawan = new ArrayList<>();
+                preparedStatement =  conn.prepareStatement(query);
+                neSet = preparedStatement.executeQuery();
+                
+                while(neSet.next()){
+                    int NIP = neSet.getInt("id_karyawan");
+                    String nama = neSet.getString("nama_karyawan");
+                    String gender = neSet.getString("jns_kelamin");
+                    String lahir = neSet.getString("tgl_lahir");
+                    String mulaiKerja = neSet.getString("tgl_mulai_bekerja");
+                    int status = neSet.getInt("status");
+                    
+                    karyawan = new Karyawan(
+                            NIP, 
+                            nama, 
+                            gender, 
+                            lahir, 
+                            mulaiKerja,
+                            status);
+                    
+                    listKaryawan.add(karyawan);
+                }
+                neSet.close();
+                preparedStatement.close();
+            }catch (Exception e) {
+                Logger.getLogger(ViewDokter.class.getName()).log(Level.SEVERE,null,e);     
+            }        
         }else{
             System.out.println("Disconnected");
         }
