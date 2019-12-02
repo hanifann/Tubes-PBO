@@ -33,6 +33,17 @@ public class Pasien {
         this.umur = umur;
     }   
     
+    public Pasien(int id_pasien, String namaPasien, String tglLahirPasien, String noTelpPasien,  String pekerjaanPasien, String alamatPasien) {
+        this.id_pasien = id_pasien;
+        this.namaPasien = namaPasien;
+        
+        this.tglLahirPasien = tglLahirPasien;
+        this.noTelpPasien = noTelpPasien;
+        this.alamatPasien = alamatPasien;
+        this.pekerjaanPasien = pekerjaanPasien;
+        
+    }   
+    
     public int getUmur() {
         return umur;
     }

@@ -228,17 +228,18 @@ public class ViewDokter extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void cari(){
+    private void cariDokter(){
         try {
-            int keword = Integer.parseInt(tfCari.getText());
-            fc.CariDokter(keword); 
-        } catch (NumberFormatException e) {
+            int key = Integer.parseInt(tfCari.getText().trim());
+            fc.cariDok(key);
+            fc.readDokter();
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "isian harus berupa angka");
-        } 
+        }
     }
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-        cari();
+        cariDokter();
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
@@ -253,7 +254,7 @@ public class ViewDokter extends javax.swing.JFrame {
     private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            cari();
+            cariDokter();
         }
     }//GEN-LAST:event_btnCariKeyPressed
 

@@ -180,7 +180,7 @@ public class Service {
         for (Poliklinik po : listPoliklinik) {
             modelPoliklinik.addRow(
                     new Object[]{
-                        po.getKode_penyakit(),
+                        po.getKode_poliklinik(),
                         po.getNamaPoliklinik(),
                         po.getNamaSpesialisasi(),
                         po.getNamaPenyakit()
@@ -372,9 +372,92 @@ public class Service {
                 readPasien();
             }
         }
-    }    
+    }
     
-    public void cariPoliklinik(){
+    public void cariPas(int key){
+        if(conn != null){
+            listPasien = new ArrayList<>();
+            String sql = "SELECT * FROM pasien WHERE id_pasien LIKE ?";
+            try {
+                preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, "%"+key+"%");
+                neSet = preparedStatement.executeQuery();
+                
+                while(neSet.next()){
+                    int id = neSet.getInt("id_pasien");
+                    String nama = neSet.getString("nama_pasien");
+                    String dob = neSet.getString("tgl_lahir");
+                    String telepon = neSet.getString("telepon");
+                    String pekerjaan = neSet.getString("pekerjaan");
+                    String alamat = neSet.getString("alamat");
+                    Pasien pas = new Pasien(id, nama, telepon, telepon, pekerjaan, alamat);
+                    listPasien.add(pas);
+                }
+                neSet.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                Logger.getLogger(Service.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }        
+    }
+    
+    public void cariDok(int key){
+        if(conn != null){
+            listDokter = new ArrayList<>();
+            String sql = "SELECT * FROM dokter "
+                        + "JOIN poliklinik ON dokter.kode_poliklinik = poliklinik.kode_poliklinik "
+                        + "JOIN spesialisasi ON poliklinik.kode_spesialisasi = spesialisasi.kode_spesialisasi "
+                        + " WHERE dokter.id_dokter LIKE ? ORDER BY dokter.id_dokter";
+            try {
+                preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setString(1, "%"+key+"%");
+                neSet = preparedStatement.executeQuery();
+                
+                while(neSet.next()){
+                    int id = neSet.getInt("id_dokter");
+                    String nama = neSet.getString("nama_dokter");
+                    String masukKerja = neSet.getString("tgl_mulai_kerja");
+                    String telepon = neSet.getString("no_telepon");
+                    String namaSpes = neSet.getString("nama_spesialisasi");
+                    String namaPol = neSet.getString("nama_poliklinik");
+                    Dokter dok = new Dokter(id, nama, null, null, masukKerja, telepon, null, namaPol, namaSpes);
+                    listDokter.add(dok);                                      
+                }
+                neSet.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                Logger.getLogger(Service.class.getName()).log(Level.SEVERE,null,e);
+            }
+        }
+        
+    }
+    
+    public void cariPoliklinik(int key){
+        if(conn != null){
+        listPoliklinik = new ArrayList<>();
+        String sql = "SELECT * FROM poliklinik "
+                        + "JOIN spesialisasi ON poliklinik.kode_spesialisasi = spesialisasi.kode_spesialisasi "
+                        + "JOIN penyakit ON spesialisasi.kode_penyakit = penyakit.kode_penyakit "
+                        + "WHERE poliklinik.kode_poliklinik LIKE ? "
+                        + "ORDER BY poliklinik.kode_poliklinik";
+            try {
+                preparedStatement = conn.prepareCall(sql);
+                preparedStatement.setString(1, "%"+key+"%");
+                neSet = preparedStatement.executeQuery();
+                
+                while(neSet.next()){
+                    int id = neSet.getInt("kode_poliklinik");
+                    String nampol = neSet.getString("nama_poliklinik");
+                    String names = neSet.getString("nama_spesialisasi");
+                    String nampe = neSet.getString("nama_penyakit");
+                    Poliklinik poo = new Poliklinik(id, nampol, 0, names, 0, nampe);
+                    listPoliklinik.add(poo);                    
+                }
+                neSet.close();
+                preparedStatement.close();
+            } catch (Exception e) {
+            }
+        }
         
     }
     

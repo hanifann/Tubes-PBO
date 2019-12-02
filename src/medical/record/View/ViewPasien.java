@@ -230,23 +230,23 @@ public class ViewPasien extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void cari(){
-        try {
-            int keword = Integer.parseInt(tfCari.getText());
-            fc.cariPasien(keword);
+    private void carii(){
+        try{
+            int key = Integer.parseInt(tfCari.getText().trim());
+            fc.cariPas(key); 
             fc.readPasien();
-        } catch (NumberFormatException e) {
+        }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "isian harus berupa angka");
-        }  
+        }
     }
     private void btnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariActionPerformed
         // TODO add your handling code here:
-              
+              carii();
     }//GEN-LAST:event_btnCariActionPerformed
 
     private void tfCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCariActionPerformed
         // TODO add your handling code here:
-        cari();
+        
     }//GEN-LAST:event_tfCariActionPerformed
 
     private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
@@ -260,7 +260,7 @@ public class ViewPasien extends javax.swing.JFrame {
     private void btnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            cari();
+            carii();
         }
     }//GEN-LAST:event_btnCariKeyPressed
 
