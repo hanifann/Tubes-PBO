@@ -110,7 +110,7 @@ public class ViewDashboard extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Selamat Datang");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(630, 190, 173, 50);
+        jLabel10.setBounds(630, 190, 170, 50);
 
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 26.png"))); // NOI18N
         btnDokter.addMouseListener(new java.awt.event.MouseAdapter() {

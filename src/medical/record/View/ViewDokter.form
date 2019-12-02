@@ -202,10 +202,10 @@
                   <Table columnCount="6" rowCount="4">
                     <Column editable="false" title="NIP" type="java.lang.String"/>
                     <Column editable="false" title="Nama" type="java.lang.String"/>
-                    <Column editable="false" title="Spesialis" type="java.lang.String"/>
-                    <Column editable="false" title="Poliklinik" type="java.lang.String"/>
                     <Column editable="false" title="Tanggal Mulai Kerja" type="java.lang.String"/>
                     <Column editable="false" title="No Telepon" type="java.lang.String"/>
+                    <Column editable="false" title="Spesialis" type="java.lang.String"/>
+                    <Column editable="false" title="Poliklinik" type="java.lang.String"/>
                   </Table>
                 </Property>
                 <Property name="alignmentX" type="float" value="1.0"/>

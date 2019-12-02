@@ -171,7 +171,7 @@ public class ViewDokter extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NIP", "Nama", "Spesialis", "Poliklinik", "Tanggal Mulai Kerja", "No Telepon"
+                "NIP", "Nama", "Tanggal Mulai Kerja", "No Telepon", "Spesialis", "Poliklinik"
             }
         ) {
             Class[] types = new Class [] {

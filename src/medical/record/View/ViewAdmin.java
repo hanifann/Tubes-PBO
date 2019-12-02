@@ -19,6 +19,7 @@ import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Pasien;
+import medical.record.Model.Dokter;
 
 
 
@@ -809,6 +810,13 @@ public final class ViewAdmin extends javax.swing.JFrame {
         String telepon = tfTeleponDokter.getText();
         String alamat = tfAlamatDokter.getText();
         String pass = auth.MD5(tfPassDokter.getText());
+        int kdPoli = Integer.parseInt(cbKdPoliklinik.getSelectedItem().toString().substring(0,4));
+        int kdSpesial = Integer.parseInt(cbKdSpesialis1.getSelectedItem().toString().substring(0,4));
+        
+        
+        function.addDokter(nama, gender, tglLahir, mulaiKerja, telepon, alamat, pass, kdPoli, kdSpesial);
+        function.loadDokter();
+        JOptionPane.showMessageDialog(this, "Data Berhasil Ditambahkan");
         
         tfNamaDokter.setText("");
         tfGenderDokter.setSelectedIndex(0);
@@ -817,6 +825,20 @@ public final class ViewAdmin extends javax.swing.JFrame {
         tfTeleponDokter.setText("");
         tfAlamatDokter.setText("");
         tfPassDokter.setText("");
+        
+        ArrayList<Dokter> lmao = function.ter();
+        modelDokter.setRowCount(0);
+        for (Dokter value: lmao){
+            modelDokter.addRow(
+                  new Object[]{
+                       value.getId_dokter(),
+                       value.getNamaDokter(),
+                       value.getTglMulaiKerja(),
+                       value.getNoTelpDokter(),
+                       value.getNamaSpesialisasi()
+                  }
+            );
+        }
         
         
         

@@ -106,10 +106,10 @@ public class Service {
     public void setTableDokter(){
         modelDokter.addColumn("NIP");
         modelDokter.addColumn("Nama");
-        modelDokter.addColumn("Spesialis");
-        modelDokter.addColumn("Poliklinik");
         modelDokter.addColumn("Tanggal Mulai Kerja");
         modelDokter.addColumn("No Telepon");
+        modelDokter.addColumn("Spesialis");
+        modelDokter.addColumn("Poliklinik");
     }
     
     public void setTablePasien(){
@@ -135,10 +135,10 @@ public class Service {
                     new Object[]{
                         value.getId_dokter(), 
                         value.getNamaDokter(),
-                        value.getNamaSpesialisasi(),
-                        value.getNamaPoliklinik(),
                         value.getTglMulaiKerja(),
-                        value.getNoTelpDokter()
+                        value.getNoTelpDokter(),
+                        value.getNamaSpesialisasi(),                                      
+                        value.getNamaPoliklinik(),
                     }
             );
         }
@@ -393,7 +393,7 @@ public class Service {
         if(conn != null){
             String query = "INSERT INTO dokter(nama_dokter,"
                     + "gender_dokter, tgl_lahir, tgl_mulai_kerja,"
-                    + "no_telp, alamat, kode_poliklinik, kode_spesialisasi, "
+                    + "no_telepon, alamat, kode_poliklinik, kode_spesialisasi, "
                     + "password_dokter) VALUE(?,?,?,?,?,?,?,?,?)";
             
             try{

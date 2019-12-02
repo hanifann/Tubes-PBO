@@ -48,7 +48,11 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         conn = Conf.databaseConnected();
         auth = new Auth();
         function = new Service(conn);
-
+        loadPasienCB();
+        loadDokterCB();
+        loadSpesialisCB();
+        loadPenyakitCB();
+        loadPoliklinikCB();
     }
 
     public ViewRekamMedis(String session, int username) {
@@ -59,11 +63,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         function = new Service(conn);
         conn = Conf.databaseConnected();
         auth = new Auth();
-        loadPasienCB();
-        loadDokterCB();
-        loadSpesialisCB();
-        loadPenyakitCB();
-        loadPoliklinikCB();
+        
     }
     
     public void loadPasienCB(){
@@ -115,7 +115,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
                 Object[] obj = new Object[2];
                 obj[0] = neSet.getString(1);
                 obj[1] = neSet.getString(2);
-                cbKdSpesialis1.addItem((String) obj[0] +" - "+ (String) obj[1]);
+                cbKdSpesialis.addItem((String) obj[0] +" - "+ (String) obj[1]);
             }
             
             neSet.close(); 
@@ -206,7 +206,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         cbKdPenyakit = new javax.swing.JComboBox<>();
         dcTglKeluar = new com.toedter.calendar.JDateChooser();
         dcTglMasuk = new com.toedter.calendar.JDateChooser();
-        cbKdSpesialis1 = new javax.swing.JComboBox<>();
+        cbKdSpesialis = new javax.swing.JComboBox<>();
         cbIdPasien = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -270,77 +270,77 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Jenis Rekam Medis : ");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(270, 200, 187, 24);
+        jLabel1.setBounds(270, 200, 182, 22);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("ID Dokter Pemerikasa : ");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(290, 300, 162, 19);
+        jLabel6.setBounds(290, 300, 158, 17);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Kode Spesialisasi : ");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(320, 340, 136, 19);
+        jLabel9.setBounds(320, 340, 135, 17);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Ruang Perawatan : ");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(320, 470, 134, 19);
+        jLabel10.setBounds(320, 470, 133, 17);
 
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Kode Poliklinik : ");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(340, 430, 116, 19);
+        jLabel11.setBounds(340, 430, 116, 17);
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Pemeriksaan : ");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(350, 620, 102, 19);
+        jLabel12.setBounds(350, 620, 100, 17);
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tanggal Masuk : ");
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(340, 510, 117, 19);
+        jLabel13.setBounds(340, 510, 118, 17);
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tanggal Keluar : ");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(340, 560, 117, 19);
+        jLabel14.setBounds(340, 560, 117, 17);
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Pengobatan : ");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(360, 790, 96, 19);
+        jLabel15.setBounds(360, 790, 96, 17);
 
         jLabel16.setBackground(new java.awt.Color(255, 255, 255));
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Tindakan : ");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(380, 700, 75, 19);
+        jLabel16.setBounds(380, 700, 77, 17);
 
         jLabel17.setBackground(new java.awt.Color(255, 255, 255));
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("ID pasien : ");
         jPanel1.add(jLabel17);
-        jLabel17.setBounds(380, 260, 77, 19);
+        jLabel17.setBounds(380, 260, 77, 17);
 
         cbKdPoliklinik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,9 +348,9 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbKdPoliklinik);
-        cbKdPoliklinik.setBounds(470, 430, 190, 26);
+        cbKdPoliklinik.setBounds(470, 430, 190, 23);
         jPanel1.add(tfRuangRawat);
-        tfRuangRawat.setBounds(470, 470, 277, 24);
+        tfRuangRawat.setBounds(470, 470, 277, 18);
 
         tfPemeriksa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -402,11 +402,11 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Kode Penyakit : ");
         jPanel1.add(jLabel20);
-        jLabel20.setBounds(340, 380, 120, 19);
+        jLabel20.setBounds(340, 380, 120, 17);
 
         cbRekamMedis1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Rawat Jalan", "Rawat Inap", "Gawat Darurat" }));
         jPanel1.add(cbRekamMedis1);
-        cbRekamMedis1.setBounds(470, 200, 190, 26);
+        cbRekamMedis1.setBounds(470, 200, 190, 23);
 
         cbIdDokter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,7 +414,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbIdDokter);
-        cbIdDokter.setBounds(470, 300, 190, 26);
+        cbIdDokter.setBounds(470, 300, 190, 23);
 
         cbKdPenyakit.setSelectedIndex(cbKdPenyakit.getSelectedIndex());
         cbKdPenyakit.setSelectedItem(cbKdPenyakit);
@@ -424,19 +424,19 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbKdPenyakit);
-        cbKdPenyakit.setBounds(470, 380, 190, 26);
+        cbKdPenyakit.setBounds(470, 380, 190, 23);
         jPanel1.add(dcTglKeluar);
-        dcTglKeluar.setBounds(470, 560, 200, 29);
+        dcTglKeluar.setBounds(470, 560, 200, 19);
         jPanel1.add(dcTglMasuk);
-        dcTglMasuk.setBounds(470, 510, 200, 29);
+        dcTglMasuk.setBounds(470, 510, 200, 19);
 
-        cbKdSpesialis1.addActionListener(new java.awt.event.ActionListener() {
+        cbKdSpesialis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbKdSpesialis1ActionPerformed(evt);
+                cbKdSpesialisActionPerformed(evt);
             }
         });
-        jPanel1.add(cbKdSpesialis1);
-        cbKdSpesialis1.setBounds(470, 340, 190, 26);
+        jPanel1.add(cbKdSpesialis);
+        cbKdSpesialis.setBounds(470, 340, 190, 23);
 
         cbIdPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -444,7 +444,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbIdPasien);
-        cbIdPasien.setBounds(470, 260, 190, 26);
+        cbIdPasien.setBounds(470, 260, 190, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -469,9 +469,9 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbIdPasienActionPerformed
 
-    private void cbKdSpesialis1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdSpesialis1ActionPerformed
+    private void cbKdSpesialisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdSpesialisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbKdSpesialis1ActionPerformed
+    }//GEN-LAST:event_cbKdSpesialisActionPerformed
 
     private void cbKdPenyakitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKdPenyakitActionPerformed
         // TODO add your handling code here:
@@ -603,7 +603,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbIdPasien;
     private javax.swing.JComboBox<String> cbKdPenyakit;
     private javax.swing.JComboBox<String> cbKdPoliklinik;
-    private javax.swing.JComboBox<String> cbKdSpesialis1;
+    private javax.swing.JComboBox<String> cbKdSpesialis;
     private javax.swing.JComboBox<String> cbRekamMedis1;
     private com.toedter.calendar.JDateChooser dcTglKeluar;
     private com.toedter.calendar.JDateChooser dcTglMasuk;

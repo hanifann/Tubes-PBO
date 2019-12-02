@@ -137,13 +137,13 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password");
         btSubmit.add(jLabel8);
-        jLabel8.setBounds(470, 560, 320, 24);
+        jLabel8.setBounds(470, 560, 320, 22);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nomor Induk Pegawai (NIP)");
         btSubmit.add(jLabel7);
-        jLabel7.setBounds(470, 480, 320, 24);
+        jLabel7.setBounds(470, 480, 320, 22);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Login.png"))); // NOI18N
         btSubmit.add(jLabel6);
