@@ -6,18 +6,13 @@
  */
 package medical.record.View;
 
+import com.placeholder.PlaceHolder;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
-import medical.record.Model.Dokter;
 
 /**
  *
@@ -57,6 +52,7 @@ public class ViewPasien extends javax.swing.JFrame {
         fc.setTablePasien();
         fc.loadPasien();
         fc.readPasien();
+        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), null, "Cari ID Pasien...", false, null, 20);
     }
     
     /**
@@ -154,7 +150,6 @@ public class ViewPasien extends javax.swing.JFrame {
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText("cari id pasien...");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);
@@ -251,7 +246,8 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
         // TODO add your handling code here:
-        ViewDetailPasien pas = new ViewDetailPasien(id);
+        int baris = tblPasien.getSelectedRow();
+        ViewDetailPasien pas = new ViewDetailPasien(baris);
         pas.setVisible(true);
         pas.setLocationRelativeTo(null);
         dispose();

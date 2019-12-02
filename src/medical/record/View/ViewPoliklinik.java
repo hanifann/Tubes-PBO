@@ -5,6 +5,7 @@
  */
 package medical.record.View;
 
+import com.placeholder.PlaceHolder;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -56,6 +57,7 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         fc.setTablePoliklinik();
         fc.loadPoliklinik();
         fc.readPoliklinik();
+        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), null, "Cari ID Poliklinik...", false, null, 20);
     }
     
     private void cari(){
@@ -156,14 +158,13 @@ public class ViewPoliklinik extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 58, 547, 112);
+        jPanel2.setBounds(0, 58, 541, 112);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 27.png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText("cari id poliklinik..");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);

@@ -5,18 +5,14 @@
  */
 package medical.record.View;
 
+import com.placeholder.PlaceHolder;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
-import medical.record.Model.Dokter;
 
 /**
  *
@@ -32,6 +28,7 @@ public class ViewDokter extends javax.swing.JFrame {
     Service fc = new Service();
     String nama;
     int id;
+    private PlaceHolder p;
     
     public ViewDokter() {
         initComponents();
@@ -55,6 +52,7 @@ public class ViewDokter extends javax.swing.JFrame {
         fc.setTableDokter();
         fc.loadDokter();
         fc.readDokter();
+        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), null, "Cari ID Dokter..", false, null, 20);
     }
 
     /**
@@ -152,7 +150,6 @@ public class ViewDokter extends javax.swing.JFrame {
         jLabel3.setBounds(1005, 58, 370, 110);
 
         tfCari.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        tfCari.setText("cari id dokter..");
         tfCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfCariActionPerformed(evt);

@@ -26,6 +26,7 @@ public class ViewDetailPasien extends javax.swing.JFrame {
     
     public ViewDetailPasien() {
         initComponents();
+       this.setLocationRelativeTo(null);
     }
 
     ViewDetailPasien(int id) {
@@ -134,56 +135,46 @@ public class ViewDetailPasien extends javax.swing.JFrame {
 
         tfIdPasien.setBackground(new java.awt.Color(255, 255, 255));
         tfIdPasien.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfIdPasien.setForeground(new java.awt.Color(0, 0, 0));
         tfIdPasien.setText("id");
         jPanel1.add(tfIdPasien);
         tfIdPasien.setBounds(390, 200, 220, 22);
 
         tfTanggal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfTanggal.setForeground(new java.awt.Color(0, 0, 0));
         tfTanggal.setText("tanggal");
         jPanel1.add(tfTanggal);
         tfTanggal.setBounds(390, 290, 210, 22);
 
         tfNama.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfNama.setForeground(new java.awt.Color(0, 0, 0));
         tfNama.setText("nama");
         jPanel1.add(tfNama);
         tfNama.setBounds(390, 240, 210, 22);
 
         tfUmur.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfUmur.setForeground(new java.awt.Color(0, 0, 0));
         tfUmur.setText("umur");
         jPanel1.add(tfUmur);
         tfUmur.setBounds(390, 330, 210, 22);
 
         tfGender.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfGender.setForeground(new java.awt.Color(0, 0, 0));
         tfGender.setText("gender");
         jPanel1.add(tfGender);
         tfGender.setBounds(920, 190, 220, 22);
 
         tfNotelp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfNotelp.setForeground(new java.awt.Color(0, 0, 0));
         tfNotelp.setText("notelp");
         jPanel1.add(tfNotelp);
         tfNotelp.setBounds(920, 230, 210, 22);
 
         tfPekerjaan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfPekerjaan.setForeground(new java.awt.Color(0, 0, 0));
         tfPekerjaan.setText("pekerjaa");
         jPanel1.add(tfPekerjaan);
         tfPekerjaan.setBounds(920, 270, 240, 22);
 
         tfAlamat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        tfAlamat.setForeground(new java.awt.Color(0, 0, 0));
         tfAlamat.setText("Alamat ");
         tfAlamat.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(tfAlamat);
         tfAlamat.setBounds(920, 310, 270, 80);
 
-        tableRM.setBackground(new java.awt.Color(255, 255, 255));
-        tableRM.setForeground(new java.awt.Color(0, 0, 0));
         tableRM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -221,49 +212,41 @@ public class ViewDetailPasien extends javax.swing.JFrame {
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("ID Pasien        :");
         jPanel1.add(jLabel14);
         jLabel14.setBounds(240, 200, 129, 22);
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Nama Pasien   :");
         jPanel1.add(jLabel15);
         jLabel15.setBounds(240, 240, 125, 22);
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Tanggal Lahir  :");
         jPanel1.add(jLabel16);
         jLabel16.setBounds(240, 290, 125, 22);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Umur             :");
         jPanel1.add(jLabel17);
         jLabel17.setBounds(240, 330, 127, 22);
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Jenis Kelamin     :");
         jPanel1.add(jLabel18);
         jLabel18.setBounds(758, 192, 143, 22);
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Nomor Telepon  :");
         jPanel1.add(jLabel19);
         jLabel19.setBounds(758, 232, 140, 22);
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Pekerjaan          :");
         jPanel1.add(jLabel20);
         jLabel20.setBounds(758, 272, 142, 22);
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Alamat             :");
         jPanel1.add(jLabel21);
         jLabel21.setBounds(758, 312, 138, 22);
@@ -274,7 +257,7 @@ public class ViewDetailPasien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 437, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
