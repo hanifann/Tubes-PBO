@@ -31,19 +31,7 @@ public class ViewCreateDokter extends javax.swing.JFrame {
         initComponents();
     }
     
-    private void addDokter(){
-        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-        String idDokter = tfIdDokter.getText();
-        String namaDokter = tfNamadokter.getText();
-        String genderDokter = cbGender.getSelectedItem().toString();
-        String dob = dateformat.format(dcdob.getDate());
-        String tglMasuk = dateformat.format(dcTglMasuk.getDate());
-        String alamat = taAlamat.getText();
-        int kdPoli = Integer.parseInt(cbKodePoli.getSelectedItem().toString().substring(0,4));
-        int kdSpesialisasi = Integer.parseInt(cbSpesialis.getSelectedItem().toString().substring(0,4));
-        String noTelp = tfNotelepon.getText();
-        function.addDokter(idDokter, genderDokter, dob, tglMasuk, noTelp, alamat, );
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

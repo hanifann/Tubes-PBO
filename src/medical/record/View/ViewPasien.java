@@ -233,7 +233,8 @@ public class ViewPasien extends javax.swing.JFrame {
     private void cari(){
         try {
             int keword = Integer.parseInt(tfCari.getText());
-            fc.CariDokter(keword); 
+            fc.cariPasien(keword);
+            fc.readPasien();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "isian harus berupa angka");
         }  

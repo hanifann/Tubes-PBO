@@ -31,8 +31,8 @@ public class Pasien {
         this.alamatPasien = alamatPasien;
         this.pekerjaanPasien = pekerjaanPasien;
         this.umur = umur;
-    }
-
+    }   
+    
     public int getUmur() {
         return umur;
     }

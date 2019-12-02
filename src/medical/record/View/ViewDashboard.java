@@ -98,19 +98,17 @@ public class ViewDashboard extends javax.swing.JFrame {
 
         labelNama.setBackground(new java.awt.Color(255, 255, 255));
         labelNama.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        labelNama.setForeground(new java.awt.Color(0, 0, 0));
         labelNama.setText("Dr David");
         labelNama.setToolTipText("");
         labelNama.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(labelNama);
-        labelNama.setBounds(520, 250, 420, 50);
+        labelNama.setBounds(640, 250, 240, 50);
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Selamat Datang");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(630, 190, 170, 50);
+        jLabel10.setBounds(630, 190, 173, 50);
 
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Group 26.png"))); // NOI18N
         btnDokter.addMouseListener(new java.awt.event.MouseAdapter() {

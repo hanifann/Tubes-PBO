@@ -97,7 +97,6 @@ public class ViewLogin extends javax.swing.JFrame {
         btSubmit.setLayout(null);
 
         tfUsername.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        tfUsername.setForeground(new java.awt.Color(0, 0, 0));
         tfUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfUsernameActionPerformed(evt);
@@ -107,7 +106,6 @@ public class ViewLogin extends javax.swing.JFrame {
         tfUsername.setBounds(460, 510, 510, 40);
 
         tfPassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        tfPassword.setForeground(new java.awt.Color(0, 0, 0));
         tfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfPasswordActionPerformed(evt);
@@ -137,13 +135,13 @@ public class ViewLogin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Password");
         btSubmit.add(jLabel8);
-        jLabel8.setBounds(470, 560, 320, 22);
+        jLabel8.setBounds(470, 560, 320, 24);
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Nomor Induk Pegawai (NIP)");
         btSubmit.add(jLabel7);
-        jLabel7.setBounds(470, 480, 320, 22);
+        jLabel7.setBounds(470, 480, 320, 24);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/medical/record/assets/rekam-medik-asset/Login.png"))); // NOI18N
         btSubmit.add(jLabel6);

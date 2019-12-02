@@ -79,8 +79,7 @@ public final class ViewAdmin extends javax.swing.JFrame {
         modelKaryawan.addColumn("Nama");
         modelKaryawan.addColumn("Gender");
         modelKaryawan.addColumn("Tanggal Lahir");
-        modelKaryawan.addColumn("Mulai Kerja");
-        modelKaryawan.addColumn("Telepon");
+        modelKaryawan.addColumn("Mulai Kerja");        
         modelKaryawan.addColumn("Status");
     }
    
@@ -97,10 +96,10 @@ public final class ViewAdmin extends javax.swing.JFrame {
     private void setPasien(){
         modelPasien.addColumn("Id Pasien");
         modelPasien.addColumn("Nama");
-        modelPasien.addColumn("Gender");
-        modelPasien.addColumn("Umur");
-        modelPasien.addColumn("Telepon");
+        modelPasien.addColumn("Tanggal Lahir");
+        modelPasien.addColumn("No Telepon");
         modelPasien.addColumn("Pekerjaan");
+        modelPasien.addColumn("Alamat");
     }
     
     private void reset (){

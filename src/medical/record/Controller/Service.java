@@ -5,7 +5,6 @@
  */
 package medical.record.Controller;
 
-import com.sun.corba.se.impl.oa.poa.Policies;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -373,7 +372,7 @@ public class Service {
                 readPasien();
             }
         }
-    }
+    }    
     
     public void cariPoliklinik(){
         
