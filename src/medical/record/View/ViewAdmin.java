@@ -5,6 +5,7 @@
  */
 package medical.record.View;
 
+import com.placeholder.PlaceHolder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -71,6 +72,20 @@ public final class ViewAdmin extends javax.swing.JFrame {
         setPasien();
         function.loadPasien();
         function.readPasien();
+        
+        new PlaceHolder(tfNamaDokter, "Nama Dokter");
+        new PlaceHolder(tfTeleponDokter, "No Telepon");
+        new PlaceHolder(tfAlamatDokter, "Alamat Dokter");
+        new PlaceHolder(tfPassDokter, "Password Dokter");
+        
+        new PlaceHolder(tfNamaPasien, "Nama Pasien");
+        new PlaceHolder(tfUmurPasien, "Umur Pasien");
+        new PlaceHolder(tfTeleponPasien, "No Telepon Pasien");
+        new PlaceHolder(tfPekerjaanPasien, "Pekerjaan Pasien");
+        new PlaceHolder(tfAlamatPasien, "Alamat Pasien");
+        
+        new PlaceHolder(tfNamaKaryawan, "Nama Pegawai");
+        new PlaceHolder(tfPassKaryawan, "Password Karyawan");
     }
     
     // nama, gender, tanggal lahir, tanggal mulai kerja, no telpon, alamat status, pass
