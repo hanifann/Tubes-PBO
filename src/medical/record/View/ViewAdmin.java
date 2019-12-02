@@ -875,9 +875,10 @@ public final class ViewAdmin extends javax.swing.JFrame {
                   new Object[]{
                        va.getId_pasien(),
                        va.getNamaPasien(),
-                       va.getGenderPasien(),
-                       va.getUmur(),
-                       va.getPekerjaanPasien()
+                       va.getTglLahirPasien(),
+                       va.getNoTelpPasien(),
+                       va.getPekerjaanPasien(),
+                       va.getAlamatPasien()
                   }
             );
         }
