@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
+import medical.record.Model.Pasien;
 
 /**
  *
@@ -52,7 +53,6 @@ public class ViewPasien extends javax.swing.JFrame {
         fc.setTablePasien();
         fc.loadPasien();
         fc.readPasien();
-        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), null, "Cari ID Pasien...", false, null, 20);
     }
     
     /**
@@ -246,9 +246,10 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
         // TODO add your handling code here:
-        int baris = tblPasien.getSelectedRow();
-        ViewDetailPasien pas = new ViewDetailPasien(baris);
-        pas.setVisible(true);
+        int selected = tblPasien.getSelectedRow();
+        int id_pasien = Integer.parseInt(tblPasien.getValueAt(selected, 0).toString());
+        Pasien pasien = fc.getPasien(id_pasien);
+        ViewDetailPasien pas = new ViewDetailPasien(pasien);
         pas.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_tblPasienMouseClicked

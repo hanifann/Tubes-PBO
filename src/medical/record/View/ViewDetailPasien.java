@@ -9,6 +9,7 @@ import java.sql.Connection;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
+import medical.record.Model.Pasien;
 
 /**
  *
@@ -22,21 +23,46 @@ public class ViewDetailPasien extends javax.swing.JFrame {
     Connection conn;
     Auth auth;
     Service fc = new Service();
+    int idPasien;
     int id;
+    String nama;
     
     public ViewDetailPasien() {
         initComponents();
        this.setLocationRelativeTo(null);
     }
-
-    ViewDetailPasien(int id) {
+    
+    ViewDetailPasien(Pasien pasien) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        conn = Conf.databaseConnected();
+        tableRM.setModel(fc.getModelRM());
+        auth = new Auth();
+        fc.setTableRM();
+        fc.loadMedicalRecord(pasien.getId_pasien());
+        fc.readRM();
+        tfIdPasien.setText(String.valueOf(pasien.getId_pasien()));
+        tfNama.setText(pasien.getNamaPasien());
+        tfAlamat.setText(pasien.getAlamatPasien());
+        tfGender.setText(pasien.getGenderPasien());
+        tfNotelp.setText(pasien.getNoTelpPasien());
+        tfPekerjaan.setText(pasien.getPekerjaanPasien());
+        tfTanggal.setText(pasien.getTglLahirPasien());
+        tfUmur.setText(String.valueOf(pasien.getUmur()));
+    }
+    
+    ViewDetailPasien(int idPasien, String session, int username) {
         initComponents();
         this.setLocationRelativeTo(null);
         conn = Conf.databaseConnected();
         auth = new Auth();
+        nama = session;
+        id = username;
         tableRM.setModel(fc.getModelRM());
         fc.loadPasien();
     }
+    
+    
     
     public void setDataPasien(){
         tfIdPasien.setText("");
@@ -271,7 +297,7 @@ public class ViewDetailPasien extends javax.swing.JFrame {
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
         // TODO add your handling code here:
-        ViewDashboard menu = new ViewDashboard();
+        ViewPasien menu = new ViewPasien(nama, id);
         menu.setVisible(true);
         menu.setLocationRelativeTo(null);
         dispose();
