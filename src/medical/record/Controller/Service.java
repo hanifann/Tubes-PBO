@@ -30,7 +30,7 @@ import medical.record.View.ViewRekamMedis;
 public class Service {
 
     Connection conn;    
-    DefaultTableModel modelDokter, modelPasien,modelMedicalRecord, modelRekamMedis, modelPoliklinik, modelKaryawan;
+    DefaultTableModel modelDokter, modelPasien,modelMedicalRecord, modelPoliklinik, modelKaryawan;
     PreparedStatement preparedStatement;
     ResultSet neSet;
     
@@ -52,22 +52,25 @@ public class Service {
     Spesialisasi spesialis;
     ArrayList<Spesialisasi> listSpesialisasi;
     
+    MedicalRecord medicalRecord;
+    ArrayList<MedicalRecord> listMedicalRecord;
+    
 
     public Service(Connection conn) {
         this.conn = conn;
         modelDokter = new DefaultTableModel();
         modelPasien = new DefaultTableModel();
         modelPoliklinik = new DefaultTableModel();
-        modelRekamMedis = new DefaultTableModel();
+        modelMedicalRecord = new DefaultTableModel();
         modelKaryawan = new DefaultTableModel();
     }
     
     public Service() {
         modelDokter = new DefaultTableModel();
         modelPasien = new DefaultTableModel();
-        modelPoliklinik = new DefaultTableModel();
-        modelRekamMedis = new DefaultTableModel();
+        modelPoliklinik = new DefaultTableModel();        
         modelKaryawan = new DefaultTableModel();
+        modelMedicalRecord = new DefaultTableModel();
         conn = Conf.databaseConnected();
     }
     
@@ -84,7 +87,7 @@ public class Service {
     }
     
     public DefaultTableModel getModelRM() {
-        return modelRekamMedis;
+        return modelMedicalRecord;
     }
     
     public DefaultTableModel getModelKaryawan(){
@@ -98,10 +101,6 @@ public class Service {
     public ArrayList<Dokter> ter(){
         return listDokter;
     }
-    
-    
-    MedicalRecord medicalRecord;
-    ArrayList<MedicalRecord> listMedicalRecord;
     
     public void setTableDokter(){
         modelDokter.addColumn("NIP");

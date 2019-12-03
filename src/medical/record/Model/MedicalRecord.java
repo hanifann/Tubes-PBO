@@ -43,6 +43,10 @@ public class MedicalRecord {
         this.jenisRM = jenisRM;
     }
 
+    public MedicalRecord(int id_medicalrecord) {
+        this.id_medicalrecord = id_medicalrecord;
+    }
+
     public String getJenisRM() {
         return jenisRM;
     }

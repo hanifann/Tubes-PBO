@@ -170,6 +170,20 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             Logger.getLogger(Service.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
+     
+     private void reset(){
+         cbKdPoliklinik.setSelectedIndex(0);
+        cbKdPoliklinik.setSelectedIndex(0);
+        cbIdDokter.setSelectedIndex(0);
+        cbIdPasien.setSelectedIndex(0);
+        cbIdDokter.setSelectedItem(0);
+        tfPemeriksa.setText("");
+        tfRuangRawat.setText("");
+        dcTglMasuk.setDate(new Date());
+        dcTglKeluar.setDate(new Date());
+        tfTindakan.setText("");
+        tfPengobatan.setText("");
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -476,17 +490,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        cbKdPoliklinik.setSelectedIndex(0);
-        cbKdPoliklinik.setSelectedIndex(0);
-        cbIdDokter.setSelectedIndex(0);
-        cbIdPasien.setSelectedIndex(0);
-        cbIdDokter.setSelectedItem(0);
-        tfPemeriksa.setText("");
-        tfRuangRawat.setText("");
-        dcTglMasuk.setDate(new Date());
-        dcTglKeluar.setDate(new Date());
-        tfTindakan.setText("");
-        tfPengobatan.setText("");
+        reset();
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
@@ -511,23 +515,25 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
                 || kdPenyakit==0 || pemeriksa.equals("") || ruangRawat.equals("") || tglMasuk.equals("")
                 || tglKeluar.equals("") || tindakan.equals("") || pengobatan.equals("")){
                 JOptionPane.showMessageDialog(this, "pastikan untuk melengkapi semua field sebelum submit data");
-            }
+            }else{
 
-            function.addRekamMedik(
-                conn,
-                idPasien,
-                idDokter,
-                kdSpesialisasi,
-                kdPoli,
-                kdPenyakit,
-                rekamMedis,
-                ruangRawat,
-                tglMasuk,
-                tglKeluar,
-                pemeriksa,
-                tindakan,
-                pengobatan
-            );
+                function.addRekamMedik(
+                    conn,
+                    idPasien,
+                    idDokter,
+                    kdSpesialisasi,
+                    kdPoli,
+                    kdPenyakit,
+                    rekamMedis,
+                    ruangRawat,
+                    tglMasuk,
+                    tglKeluar,
+                    pemeriksa,
+                    tindakan,
+                    pengobatan
+                );
+                reset();
+            }
 
             JOptionPane.showMessageDialog(this, "berhasil di tambahkan");
         }catch (NumberFormatException e) {

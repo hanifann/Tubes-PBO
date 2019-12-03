@@ -251,6 +251,7 @@ public class ViewPasien extends javax.swing.JFrame {
         Pasien pasien = fc.getPasien(id_pasien);
         ViewDetailPasien pas = new ViewDetailPasien(pasien);
         pas.setLocationRelativeTo(null);
+        pas.setVisible(true);
         dispose();
     }//GEN-LAST:event_tblPasienMouseClicked
 
