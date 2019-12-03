@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import medical.record.Model.Dokter;
 import medical.record.Model.Karyawan;
+import medical.record.Model.MedicalRecord;
 import medical.record.Model.Pasien;
 import medical.record.Model.Penyakit;
 import medical.record.Model.Poliklinik;
@@ -34,7 +35,7 @@ import medical.record.View.ViewRekamMedis;
 public class Service {
 
     Connection conn;    
-    DefaultTableModel modelDokter, modelPasien, modelRekamMedis, modelPoliklinik, modelKaryawan;
+    DefaultTableModel modelDokter,modelMedicalRecord, modelPasien, modelRekamMedis, modelPoliklinik, modelKaryawan;
     PreparedStatement preparedStatement;
     ResultSet neSet;
     
@@ -56,7 +57,9 @@ public class Service {
     Spesialisasi spesialis;
     ArrayList<Spesialisasi> listSpesialisasi;
     
-
+    MedicalRecord medicalRecord;
+    ArrayList<MedicalRecord> listMedicalRecord;
+    
     public Service(Connection conn) {
         this.conn = conn;
         modelDokter = new DefaultTableModel();
@@ -72,6 +75,7 @@ public class Service {
         modelPoliklinik = new DefaultTableModel();
         modelRekamMedis = new DefaultTableModel();
         modelKaryawan = new DefaultTableModel();
+        modelMedicalRecord = new DefaultTableModel();
         conn = Conf.databaseConnected();
     }
     
@@ -88,7 +92,7 @@ public class Service {
     }
     
     public DefaultTableModel getModelRM() {
-        return modelRekamMedis;
+        return modelMedicalRecord;
     }
     
     public DefaultTableModel getModelKaryawan(){
@@ -126,6 +130,32 @@ public class Service {
         modelPoliklinik.addColumn("Nama Poliklinik");
         modelPoliklinik.addColumn("Spesialis");
         modelPoliklinik.addColumn("Penyakit");
+    }
+    
+    /**
+     *
+     */
+    public void setTableRM(){
+        modelMedicalRecord.addColumn("Tanggal Masuk");
+        modelMedicalRecord.addColumn("Tanggal Keluar");
+        modelMedicalRecord.addColumn("Jenis Rekam Medis");
+        modelMedicalRecord.addColumn("Dokter Pemeriksa");
+        modelMedicalRecord.addColumn("Pemeriksaan");
+    }
+     
+    public void readRM(){
+        modelMedicalRecord.setRowCount(0);
+        for (MedicalRecord rm : listMedicalRecord) {
+            modelMedicalRecord.addRow(
+                    new Object[]{
+                        rm.getTglMasuk(),
+                        rm.getTglKeluar(),
+                        rm.getJenisRM(),
+                        rm.getId_dokter(),
+                        rm.getPengobatan()
+                    }
+            );
+        }
     }
     
     public void readDokter(){
@@ -531,5 +561,53 @@ public class Service {
               System.out.println("Database not connected");
           } 
       }
+ 
+      public Pasien getPasien(int id){
+          Pasien pasien = null; 
+          if(conn != null){
+              try{
+                  String query = "SELECT * FROM pasien WHERE id_pasien = ?";
+                  PreparedStatement ps = conn.prepareStatement(query);
+                  ps.setInt(1, id);
+                  neSet = ps.executeQuery();
+                  if(neSet.next()){
+                      pasien = new Pasien(neSet.getInt("id_pasien"),neSet.getString("nama_pasien"),neSet.getString("jns_kelamin"),neSet.getString("tgl_lahir"),neSet.getString("telepon"),neSet.getString("alamat"),neSet.getString("pekerjaan"),neSet.getInt("umur"));
+                  }
+              }catch(SQLException e){
+                  Logger.getLogger(ViewRekamMedis.class.getName()).log(Level.SEVERE,null,e);          
+              }
+          }
+          return pasien;
+      }
       
+      public void loadMedicalRecord(int id){
+          if(conn != null){
+              try{
+                  listMedicalRecord = new ArrayList<>();
+                  String query = "SELECT * FROM medical_record WHERE id_pasien = ?";
+                  PreparedStatement ps = conn.prepareStatement(query);
+                  ps.setInt(1, id);
+                  neSet = ps.executeQuery();
+                  while(neSet.next()){
+                      MedicalRecord mr = new MedicalRecord(
+                              neSet.getInt("id_medical_record"),
+                              neSet.getInt("id_pasien"),
+                              neSet.getInt("id_dokter"),
+                              neSet.getInt("kode_penyakit"),
+                              neSet.getInt("kode_spesialisasi"),
+                              neSet.getInt("kode_poliklinik"),
+                              neSet.getString("pengobatan"),
+                              neSet.getString("tindakan"),
+                              neSet.getString("ruang_perawatan"),
+                              neSet.getString("tgl_masuk"),
+                              neSet.getString("tgl_keluar"), 
+                              neSet.getString("jenis_rekam_medis"));
+                      listMedicalRecord.add(mr);    
+                  }
+                  
+              }catch(SQLException e){
+                  Logger.getLogger(ViewRekamMedis.class.getName()).log(Level.SEVERE,null,e);          
+              }
+          }
+      }
 }

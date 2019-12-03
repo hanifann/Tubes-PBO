@@ -18,6 +18,7 @@ import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
 import medical.record.Model.Dokter;
+import medical.record.Model.Pasien;
 
 /**
  *
@@ -32,6 +33,7 @@ public class ViewPasien extends javax.swing.JFrame {
     Connection conn;
     Auth auth;
     Service fc = new Service();
+    int idPasien;
     int id;
     String nama;
     
@@ -250,7 +252,10 @@ public class ViewPasien extends javax.swing.JFrame {
 
     private void tblPasienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPasienMouseClicked
         // TODO add your handling code here:
-        ViewDetailPasien pas = new ViewDetailPasien(id);
+        int selected = tblPasien.getSelectedRow();
+        int id_pasien = Integer.parseInt(tblPasien.getValueAt(selected, 0).toString());
+        Pasien pasien = fc.getPasien(id_pasien);
+        ViewDetailPasien pas = new ViewDetailPasien(pasien);
         pas.setVisible(true);
         pas.setLocationRelativeTo(null);
         dispose();
