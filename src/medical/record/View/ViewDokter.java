@@ -52,7 +52,7 @@ public class ViewDokter extends javax.swing.JFrame {
         fc.setTableDokter();
         fc.loadDokter();
         fc.readDokter();
-        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), null, "Cari ID Dokter..", false, null, 20);
+        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), Color.BLACK, "Cari ID Dokter..", false, null, 20);
     }
 
     /**

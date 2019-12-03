@@ -87,7 +87,6 @@ public class ViewLogin extends javax.swing.JFrame {
         setTitle("Sistem Rekam Medis RS Medika");
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(1440, 1024));
         setResizable(false);
 
         btSubmit.setBackground(new java.awt.Color(255, 255, 255));

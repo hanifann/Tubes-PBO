@@ -7,6 +7,7 @@
 package medical.record.View;
 
 import com.placeholder.PlaceHolder;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -53,6 +54,7 @@ public class ViewPasien extends javax.swing.JFrame {
         fc.setTablePasien();
         fc.loadPasien();
         fc.readPasien();
+        new PlaceHolder(tfCari, new java.awt.Color(150, 150, 150), Color.BLACK, "Cari ID Pasien..", false, null, 20);
     }
     
     /**
