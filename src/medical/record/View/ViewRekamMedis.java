@@ -5,24 +5,19 @@
  */
 package medical.record.View;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import com.placeholder.PlaceHolder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import medical.record.Controller.Auth;
 import medical.record.Controller.Conf;
 import medical.record.Controller.Service;
-import medical.record.Model.Karyawan;
-import medical.record.Model.Spesialisasi;
 
 /**
  *
@@ -68,6 +63,11 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
         loadSpesialisCB();
         loadPenyakitCB();
         loadPoliklinikCB();
+        
+        new PlaceHolder(tfRuangRawat, "Nama Ruangan");
+        new PlaceHolder(tfPemeriksa, "Gejala yang dialami");
+        new PlaceHolder(tfPengobatan, "nama Obat");
+        new PlaceHolder(tfTindakan, "Tindakan yang diberikan");
         
     }
     
@@ -342,7 +342,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbKdPoliklinik);
-        cbKdPoliklinik.setBounds(470, 430, 190, 22);
+        cbKdPoliklinik.setBounds(470, 430, 190, 20);
         jPanel1.add(tfRuangRawat);
         tfRuangRawat.setBounds(470, 470, 277, 20);
 
@@ -407,7 +407,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbIdDokter);
-        cbIdDokter.setBounds(470, 300, 190, 22);
+        cbIdDokter.setBounds(470, 300, 190, 20);
 
         cbKdPenyakit.setSelectedIndex(cbKdPenyakit.getSelectedIndex());
         cbKdPenyakit.setSelectedItem(cbKdPenyakit);
@@ -417,7 +417,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbKdPenyakit);
-        cbKdPenyakit.setBounds(470, 380, 190, 22);
+        cbKdPenyakit.setBounds(470, 380, 190, 20);
         jPanel1.add(dcTglKeluar);
         dcTglKeluar.setBounds(470, 560, 200, 20);
         jPanel1.add(dcTglMasuk);
@@ -429,7 +429,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbKdSpesialis);
-        cbKdSpesialis.setBounds(470, 340, 190, 22);
+        cbKdSpesialis.setBounds(470, 340, 190, 20);
 
         cbIdPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,7 +437,7 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbIdPasien);
-        cbIdPasien.setBounds(470, 260, 190, 22);
+        cbIdPasien.setBounds(470, 260, 190, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -495,9 +495,9 @@ public final class ViewRekamMedis extends javax.swing.JFrame {
 
         try {
             String rekamMedis = cbRekamMedis1.getSelectedItem().toString();
-            int idPasien = Integer.parseInt(cbIdDokter.getSelectedItem().toString().substring(0,4));
+            int idPasien = Integer.parseInt(cbIdPasien.getSelectedItem().toString().substring(0,4));
             int idDokter = Integer.parseInt(cbIdDokter.getSelectedItem().toString().substring(0,4));
-            int kdSpesialisasi = Integer.parseInt(cbIdDokter.getSelectedItem().toString().substring(0,4));
+            int kdSpesialisasi = Integer.parseInt(cbKdSpesialis.getSelectedItem().toString().substring(0,4));
             int kdPenyakit = Integer.parseInt(cbKdPenyakit.getSelectedItem().toString().substring(0,4));
             int kdPoli = Integer.parseInt(cbKdPoliklinik.getSelectedItem().toString().substring(0,4));
             String pemeriksa = tfPemeriksa.getText();
